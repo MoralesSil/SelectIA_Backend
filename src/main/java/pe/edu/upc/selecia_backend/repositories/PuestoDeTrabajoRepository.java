@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PuestoDeTrabajoRepository extends JpaRepository<PuestoDeTrabajo, Integer> {
     List<PuestoDeTrabajo> findByLugarIgnoreCase(String lugar);
+    PuestoDeTrabajo findByidPuesto(int id);
 }

@@ -23,8 +23,8 @@ public class EmbeddingPythonService {
     }
 
     // Pide la similitud con todos los candidatos
-    public List<Double> getSimilarities(String jdText, List<List<Double>> candidateEmbeddings) {
-        SimilarityRequest req = new SimilarityRequest(jdText, candidateEmbeddings);
+    public List<Double> getSimilaritiesWithEmbedding(List<Double> embeddingPuesto, List<List<Double>> embeddingsCandidatos) {
+        SimilarityRequest req = new SimilarityRequest(embeddingPuesto, embeddingsCandidatos);
         SimilarityResponse resp = webClient.post()
                 .uri("/similarity")
                 .body(Mono.just(req), SimilarityRequest.class)
@@ -38,10 +38,13 @@ public class EmbeddingPythonService {
     static class EmbeddingRequest { public String text; public EmbeddingRequest(String t) { this.text = t; } }
     static class EmbeddingResponse { public List<Double> embedding; }
     static class SimilarityRequest {
-        public String jd_text; public List<List<Double>> candidates;
-        public SimilarityRequest(String jd, List<List<Double>> cands) {
-            this.jd_text = jd; this.candidates = cands;
+        public List<Double> jd_embedding; // <--- CAMBIA EL NOMBRE Y EL TIPO
+        public List<List<Double>> candidates;
+        public SimilarityRequest(List<Double> jd_embedding, List<List<Double>> candidates) {
+            this.jd_embedding = jd_embedding;
+            this.candidates = candidates;
         }
     }
+
     static class SimilarityResponse { public List<Double> scores; }
 }

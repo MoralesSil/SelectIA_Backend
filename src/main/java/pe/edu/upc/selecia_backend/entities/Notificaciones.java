@@ -10,7 +10,7 @@ public class Notificaciones implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_notificacion;
+    private Integer idnotificacion;
 
     @Column(length = 255)
     private String descripcion;
@@ -24,27 +24,27 @@ public class Notificaciones implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id_usuario")
+    @JoinColumn(name = "idusuario")
     private Usuario usuario;
 
     public Notificaciones() {
 
     }
 
-    public Notificaciones(Integer id_notificacion, String descripcion, Integer tipo, Integer estado, Usuario usuario) {
-        this.id_notificacion = id_notificacion;
+    public Notificaciones(Integer idnotificacion, String descripcion, Integer tipo, Integer estado, Usuario usuario) {
+        this.idnotificacion = idnotificacion;
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.estado = estado;
         this.usuario = usuario;
     }
 
-    public Integer getId_notificacion() {
-        return id_notificacion;
+    public Integer getIdnotificacion() {
+        return idnotificacion;
     }
 
-    public void setId_notificacion(Integer id_notificacion) {
-        this.id_notificacion = id_notificacion;
+    public void setIdnotificacion(Integer id_notificacion) {
+        this.idnotificacion = id_notificacion;
     }
 
     public String getDescripcion() {

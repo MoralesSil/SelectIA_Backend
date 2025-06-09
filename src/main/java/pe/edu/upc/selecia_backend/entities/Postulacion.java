@@ -11,44 +11,40 @@ public class Postulacion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_postulacion;
+    private Integer idpostulacion;
 
-    @Column(name = "fecha_postulacion")
+    @Column(name = "fechapostulacion")
     private java.sql.Date fechaPostulacion;
 
     @ManyToOne
-    @JoinColumn(name = "perfil_postulante_id_perfil")
+    @JoinColumn(name = "idperfil")
     private PerfilPostulante perfilPostulante;
 
     @ManyToOne
-    @JoinColumn(name = "oferta_laboral_id_oferta")
+    @JoinColumn(name = "idoferta")
     private OfertaLaboral ofertaLaboral;
 
     @Column
     private Boolean estado;
 
-    @Column
-    private Integer score;
-
-    public Postulacion(Integer id_postulacion, Date fechaPostulacion, PerfilPostulante perfilPostulante, OfertaLaboral ofertaLaboral, Boolean estado, Integer score) {
-        this.id_postulacion = id_postulacion;
+    public Postulacion(Integer idpostulacion, Date fechaPostulacion, PerfilPostulante perfilPostulante, OfertaLaboral ofertaLaboral, Boolean estado) {
+        this.idpostulacion = idpostulacion;
         this.fechaPostulacion = fechaPostulacion;
         this.perfilPostulante = perfilPostulante;
         this.ofertaLaboral = ofertaLaboral;
         this.estado = estado;
-        this.score = score;
     }
 
     public Postulacion() {
 
     }
 
-    public Integer getId_postulacion() {
-        return id_postulacion;
+    public Integer getIdpostulacion() {
+        return idpostulacion;
     }
 
-    public void setId_postulacion(Integer id_postulacion) {
-        this.id_postulacion = id_postulacion;
+    public void setIdpostulacion(Integer id_postulacion) {
+        this.idpostulacion = id_postulacion;
     }
 
     public Date getFechaPostulacion() {
@@ -83,11 +79,4 @@ public class Postulacion implements Serializable {
         this.estado = estado;
     }
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
 }

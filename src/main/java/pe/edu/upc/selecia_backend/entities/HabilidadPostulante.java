@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "habilidad_postulante")
+@Table(name = "habilidadpostulante")
 public class HabilidadPostulante implements Serializable {
 
     @Id
@@ -13,14 +13,14 @@ public class HabilidadPostulante implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "perfil_postulante_id_perfil")
+    @JoinColumn(name = "idperfil")
     private PerfilPostulante perfilPostulante;
 
     @Column(length = 50)
     private String nivel;
 
     @ManyToOne
-    @JoinColumn(name = "habilidad_id")
+    @JoinColumn(name = "habilidadid")
     private Habilidad habilidad;
 
     public HabilidadPostulante() {

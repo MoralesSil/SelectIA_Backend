@@ -11,7 +11,7 @@ public class Experiencia implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_experiencia;
+    private Integer idexperiencia;
 
     @Column(length = 150)
     private String empresa;
@@ -19,10 +19,10 @@ public class Experiencia implements Serializable {
     @Column(length = 100)
     private String puesto;
 
-    @Column(name = "fecha_inicio")
+    @Column(name = "fechainicio")
     private java.sql.Date fechaInicio;
 
-    @Column(name = "fecha_fin")
+    @Column(name = "fechafin")
     private java.sql.Date fechaFin;
 
 
@@ -38,8 +38,8 @@ public class Experiencia implements Serializable {
 
     }
 
-    public Experiencia(Integer id_experiencia, String empresa, String puesto, Date fechaInicio, Date fechaFin, String descripcion, PerfilPostulante perfilPostulante) {
-        this.id_experiencia = id_experiencia;
+    public Experiencia(Integer idexperiencia, String empresa, String puesto, Date fechaInicio, Date fechaFin, String descripcion, PerfilPostulante perfilPostulante) {
+        this.idexperiencia = idexperiencia;
         this.empresa = empresa;
         this.puesto = puesto;
         this.fechaInicio = fechaInicio;
@@ -48,12 +48,12 @@ public class Experiencia implements Serializable {
         this.perfilPostulante = perfilPostulante;
     }
 
-    public Integer getId_experiencia() {
-        return id_experiencia;
+    public Integer getIdexperiencia() {
+        return idexperiencia;
     }
 
-    public void setId_experiencia(Integer id_experiencia) {
-        this.id_experiencia = id_experiencia;
+    public void setIdexperiencia(Integer id_experiencia) {
+        this.idexperiencia = id_experiencia;
     }
 
     public String getEmpresa() {

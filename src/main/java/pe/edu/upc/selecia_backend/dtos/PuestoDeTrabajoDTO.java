@@ -1,25 +1,14 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.Empresa;
+
 public class PuestoDeTrabajoDTO {
     private Integer idPuesto;
     private String descripcion;
     private String requisitos;
     private String lugar;
-    private Integer empresaId;
+    private Empresa empresa;
 
-    // Constructor vacío
-    public PuestoDeTrabajoDTO() {}
-
-    // Constructor con argumentos
-    public PuestoDeTrabajoDTO(Integer idPuesto, String descripcion, String requisitos, String lugar, Integer empresaId) {
-        this.idPuesto = idPuesto;
-        this.descripcion = descripcion;
-        this.requisitos = requisitos;
-        this.lugar = lugar;
-        this.empresaId = empresaId;
-    }
-
-    // Getters y setters
     public Integer getIdPuesto() {
         return idPuesto;
     }
@@ -52,11 +41,11 @@ public class PuestoDeTrabajoDTO {
         this.lugar = lugar;
     }
 
-    public Integer getEmpresaId() {
-        return empresaId;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setEmpresaId(Integer empresaId) {
-        this.empresaId = empresaId;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }

@@ -10,7 +10,7 @@ public class Empresa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_empresa;
+    private Integer idempresa;
 
     @Column(length = 150, nullable = false)
     private String razonSocial;
@@ -25,19 +25,19 @@ public class Empresa implements Serializable {
 
     }
 
-    public Integer getId_empresa() {
-        return id_empresa;
+    public Integer getIdempresa() {
+        return idempresa;
     }
 
-    public Empresa(Integer id_empresa, String razonSocial, String ruc, String descripcion) {
-        this.id_empresa = id_empresa;
+    public Empresa(Integer idempresa, String razonSocial, String ruc, String descripcion) {
+        this.idempresa = idempresa;
         this.razonSocial = razonSocial;
         this.ruc = ruc;
         this.descripcion = descripcion;
     }
 
-    public void setId_empresa(Integer id_empresa) {
-        this.id_empresa = id_empresa;
+    public void setIdempresa(Integer id_empresa) {
+        this.idempresa = id_empresa;
     }
 
     public String getRazonSocial() {

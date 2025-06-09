@@ -1,29 +1,16 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.OfertaLaboral;
+import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
+
 import java.sql.Date;
 
 public class PostulacionDTO {
     private Integer idPostulacion;
     private Date fechaPostulacion;
-    private Integer perfilPostulanteId;
-    private Integer ofertaLaboralId;
+    private PerfilPostulante perfilPostulante;
+    private OfertaLaboral ofertaLaboral;
     private Boolean estado;
-    private Integer score;
-
-    // Constructor vacío
-    public PostulacionDTO() {}
-
-    // Constructor con argumentos
-    public PostulacionDTO(Integer idPostulacion, Date fechaPostulacion, Integer perfilPostulanteId, Integer ofertaLaboralId, Boolean estado, Integer score) {
-        this.idPostulacion = idPostulacion;
-        this.fechaPostulacion = fechaPostulacion;
-        this.perfilPostulanteId = perfilPostulanteId;
-        this.ofertaLaboralId = ofertaLaboralId;
-        this.estado = estado;
-        this.score = score;
-    }
-
-    // Getters y setters
 
     public Integer getIdPostulacion() {
         return idPostulacion;
@@ -41,20 +28,20 @@ public class PostulacionDTO {
         this.fechaPostulacion = fechaPostulacion;
     }
 
-    public Integer getPerfilPostulanteId() {
-        return perfilPostulanteId;
+    public PerfilPostulante getPerfilPostulante() {
+        return perfilPostulante;
     }
 
-    public void setPerfilPostulanteId(Integer perfilPostulanteId) {
-        this.perfilPostulanteId = perfilPostulanteId;
+    public void setPerfilPostulante(PerfilPostulante perfilPostulante) {
+        this.perfilPostulante = perfilPostulante;
     }
 
-    public Integer getOfertaLaboralId() {
-        return ofertaLaboralId;
+    public OfertaLaboral getOfertaLaboral() {
+        return ofertaLaboral;
     }
 
-    public void setOfertaLaboralId(Integer ofertaLaboralId) {
-        this.ofertaLaboralId = ofertaLaboralId;
+    public void setOfertaLaboral(OfertaLaboral ofertaLaboral) {
+        this.ofertaLaboral = ofertaLaboral;
     }
 
     public Boolean getEstado() {
@@ -65,11 +52,4 @@ public class PostulacionDTO {
         this.estado = estado;
     }
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
 }

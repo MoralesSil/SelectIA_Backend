@@ -14,4 +14,8 @@ public interface UsuarioService {
     Usuario findById(long id);
 
     Usuario findByCorreo(String correo);
+
+    public Usuario listId(Long idUsuario);
+
+    public int findByUsername(String username);
 }

@@ -10,17 +10,17 @@ public class Rol implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_rol;
+    private Integer idrol;
 
     @Column(length = 50, nullable = false)
     private String rol;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id_usuario", nullable = true)
+    @JoinColumn(name = "usuario", nullable = true)
     private Usuario usuario;
 
-    public Rol(Integer id_rol, String rol, Usuario usuario) {
-        this.id_rol = id_rol;
+    public Rol(Integer idrol, String rol, Usuario usuario) {
+        this.idrol = idrol;
         this.rol = rol;
         this.usuario = usuario;
     }
@@ -29,12 +29,12 @@ public class Rol implements Serializable {
 
     }
 
-    public Integer getId_rol() {
-        return id_rol;
+    public Integer getIdrol() {
+        return idrol;
     }
 
-    public void setId_rol(Integer id_rol) {
-        this.id_rol = id_rol;
+    public void setIdrol(Integer id_rol) {
+        this.idrol = id_rol;
     }
 
     public String getRol() {

@@ -1,31 +1,19 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.PerfilReclutador;
+import pe.edu.upc.selecia_backend.entities.PuestoDeTrabajo;
+
 import java.sql.Date;
 
 public class OfertaLaboralDTO {
     private Integer idOferta;
     private Integer vacantes;
-    private Integer puestoDeTrabajoId;
+    private PuestoDeTrabajo puestoDeTrabajo;
     private Boolean estado;
     private Date fechaCreacion;
     private Date fechaCulminacion;
-    private Integer perfilReclutadorId;
+    private PerfilReclutador perfilReclutador;
 
-    // Constructor vacío
-    public OfertaLaboralDTO() {}
-
-    // Constructor con argumentos
-    public OfertaLaboralDTO(Integer idOferta, Integer vacantes, Integer puestoDeTrabajoId, Boolean estado, Date fechaCreacion, Date fechaCulminacion, Integer perfilReclutadorId) {
-        this.idOferta = idOferta;
-        this.vacantes = vacantes;
-        this.puestoDeTrabajoId = puestoDeTrabajoId;
-        this.estado = estado;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaCulminacion = fechaCulminacion;
-        this.perfilReclutadorId = perfilReclutadorId;
-    }
-
-    // Getters y setters
     public Integer getIdOferta() {
         return idOferta;
     }
@@ -42,12 +30,12 @@ public class OfertaLaboralDTO {
         this.vacantes = vacantes;
     }
 
-    public Integer getPuestoDeTrabajoId() {
-        return puestoDeTrabajoId;
+    public PuestoDeTrabajo getPuestoDeTrabajo() {
+        return puestoDeTrabajo;
     }
 
-    public void setPuestoDeTrabajoId(Integer puestoDeTrabajoId) {
-        this.puestoDeTrabajoId = puestoDeTrabajoId;
+    public void setPuestoDeTrabajo(PuestoDeTrabajo puestoDeTrabajo) {
+        this.puestoDeTrabajo = puestoDeTrabajo;
     }
 
     public Boolean getEstado() {
@@ -74,11 +62,11 @@ public class OfertaLaboralDTO {
         this.fechaCulminacion = fechaCulminacion;
     }
 
-    public Integer getPerfilReclutadorId() {
-        return perfilReclutadorId;
+    public PerfilReclutador getPerfilReclutador() {
+        return perfilReclutador;
     }
 
-    public void setPerfilReclutadorId(Integer perfilReclutadorId) {
-        this.perfilReclutadorId = perfilReclutadorId;
+    public void setPerfilReclutador(PerfilReclutador perfilReclutador) {
+        this.perfilReclutador = perfilReclutador;
     }
 }

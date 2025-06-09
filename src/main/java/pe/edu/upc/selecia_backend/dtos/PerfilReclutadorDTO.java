@@ -1,21 +1,13 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.Empresa;
+import pe.edu.upc.selecia_backend.entities.Usuario;
+
 public class PerfilReclutadorDTO {
     private Integer idReclutador;
-    private Integer usuarioId;
-    private Integer empresaId;
+    private Usuario usuario;
+    private Empresa empresa;
 
-    // Constructor vacío
-    public PerfilReclutadorDTO() {}
-
-    // Constructor con argumentos
-    public PerfilReclutadorDTO(Integer idReclutador, Integer usuarioId, Integer empresaId) {
-        this.idReclutador = idReclutador;
-        this.usuarioId = usuarioId;
-        this.empresaId = empresaId;
-    }
-
-    // Getters y setters
     public Integer getIdReclutador() {
         return idReclutador;
     }
@@ -24,19 +16,19 @@ public class PerfilReclutadorDTO {
         this.idReclutador = idReclutador;
     }
 
-    public Integer getUsuarioId() {
-        return usuarioId;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Integer getEmpresaId() {
-        return empresaId;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setEmpresaId(Integer empresaId) {
-        this.empresaId = empresaId;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }

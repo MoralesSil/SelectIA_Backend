@@ -29,6 +29,10 @@ public class PuestoDeTrabajoServiceImplements implements PuestoDeTrabajoService 
         puestoDeTrabajoRepository.deleteById(id);
     }
 
+    @Override
+    public PuestoDeTrabajo findById_puesto(int id) {
+        return puestoDeTrabajoRepository.findByidPuesto(id);
+    }
 
 
     @Override

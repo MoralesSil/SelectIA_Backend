@@ -18,6 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 //@Profile(value = {"development", "production"})
 //Clase S7
 @Configuration
@@ -58,11 +60,17 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/authenticate").permitAll()  // Cambiado aquí
+                        .requestMatchers(antMatcher("/login")).permitAll()
+                        .requestMatchers(antMatcher("/registrar")).permitAll()
+                        .requestMatchers(antMatcher("/rol")).permitAll()
+                        .requestMatchers(antMatcher("/user/id/{username}")).permitAll()
+                        .requestMatchers(antMatcher("/usuario")).permitAll()
+                        .requestMatchers(antMatcher("/{id}")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable)
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 

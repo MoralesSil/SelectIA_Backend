@@ -6,43 +6,43 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-@Table(name = "oferta_laboral")
+@Table(name = "ofertalaboral")
 public class OfertaLaboral implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_oferta;
+    private Integer idoferta;
 
     @Column
     private Integer vacantes;
 
     @ManyToOne
-    @JoinColumn(name = "puesto_de_trabajo_id_puesto")
+    @JoinColumn(name = "idPuesto")
     private PuestoDeTrabajo puestoDeTrabajo;
 
     @Column(nullable = false)
     private Boolean estado;
 
-    @Column(name = "fecha_creacion")
+    @Column(name = "fechacreacion")
     private java.sql.Date fechaCreacion;
 
-    @Column(name = "fecha_culminacion")
+    @Column(name = "fechaculminacion")
     private java.sql.Date fechaCulminacion;
 
     @ManyToOne
-    @JoinColumn(name = "perfil_reclutador_id_reclutador")
+    @JoinColumn(name = "idreclutador")
     private PerfilReclutador perfilReclutador;
 
     public OfertaLaboral() {
 
     }
 
-    public Integer getId_oferta() {
-        return id_oferta;
+    public Integer getIdoferta() {
+        return idoferta;
     }
 
-    public OfertaLaboral(Integer id_oferta, Integer vacantes, PuestoDeTrabajo puestoDeTrabajo, Boolean estado, Date fechaCreacion, Date fechaCulminacion, PerfilReclutador perfilReclutador) {
-        this.id_oferta = id_oferta;
+    public OfertaLaboral(Integer idoferta, Integer vacantes, PuestoDeTrabajo puestoDeTrabajo, Boolean estado, Date fechaCreacion, Date fechaCulminacion, PerfilReclutador perfilReclutador) {
+        this.idoferta = idoferta;
         this.vacantes = vacantes;
         this.puestoDeTrabajo = puestoDeTrabajo;
         this.estado = estado;
@@ -51,8 +51,8 @@ public class OfertaLaboral implements Serializable {
         this.perfilReclutador = perfilReclutador;
     }
 
-    public void setId_oferta(Integer id_oferta) {
-        this.id_oferta = id_oferta;
+    public void setIdoferta(Integer id_oferta) {
+        this.idoferta = id_oferta;
     }
 
     public Integer getVacantes() {

@@ -1,12 +1,15 @@
 package pe.edu.upc.selecia_backend.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.selecia_backend.dtos.PuestoDeTrabajoDTO;
 import pe.edu.upc.selecia_backend.entities.PuestoDeTrabajo;
 import pe.edu.upc.selecia_backend.serviceInterfaces.PuestoDeTrabajoService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/puestos")
@@ -16,15 +19,21 @@ public class PuestoDeTrabajoController {
     private PuestoDeTrabajoService puestoDeTrabajoService;
 
     @PostMapping
-    public ResponseEntity<Void> insertar(@RequestBody PuestoDeTrabajo puestoDeTrabajo) {
+    public ResponseEntity<Void> insertar(@RequestBody PuestoDeTrabajoDTO puestoDeTrabajoDTO) {
+        ModelMapper m = new ModelMapper();
+        PuestoDeTrabajo puestoDeTrabajo = m.map(puestoDeTrabajoDTO, PuestoDeTrabajo.class);
         puestoDeTrabajoService.insert(puestoDeTrabajo);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<PuestoDeTrabajo>> listar() {
+    public ResponseEntity<List<PuestoDeTrabajoDTO>> listar() {
         List<PuestoDeTrabajo> lista = puestoDeTrabajoService.list();
-        return ResponseEntity.ok(lista);
+        ModelMapper m = new ModelMapper();
+        List<PuestoDeTrabajoDTO> listaDTO = lista.stream()
+                .map(p -> m.map(p, PuestoDeTrabajoDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -34,8 +43,12 @@ public class PuestoDeTrabajoController {
     }
 
     @GetMapping("/lugar/{lugar}")
-    public ResponseEntity<List<PuestoDeTrabajo>> buscarPorLugar(@PathVariable("lugar") String lugar) {
+    public ResponseEntity<List<PuestoDeTrabajoDTO>> buscarPorLugar(@PathVariable("lugar") String lugar) {
         List<PuestoDeTrabajo> lista = puestoDeTrabajoService.findByLugar(lugar);
-        return ResponseEntity.ok(lista);
+        ModelMapper m = new ModelMapper();
+        List<PuestoDeTrabajoDTO> listaDTO = lista.stream()
+                .map(p -> m.map(p, PuestoDeTrabajoDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
     }
 }

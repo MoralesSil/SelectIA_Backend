@@ -20,8 +20,19 @@ public class UsuarioServiceImplements implements UsuarioService {
     }
 
     @Override
+    public Usuario listId(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario).orElse(new Usuario());
+    }
+
+    @Override
     public List<Usuario> list() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public int findByUsername(String username) {
+        Usuario user = usuarioRepository.findByUsername(username);
+        return user.getidusuario();
     }
 
     @Override

@@ -5,36 +5,57 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "perfil_postulante")
+@Table(name = "perfilpostulante")
 public class PerfilPostulante implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_perfil;
+    private Integer idperfil;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id_usuario")
+    @JoinColumn(name = "idusuario")
     private Usuario usuario;
 
-    @Column(name = "cv_url", length = 255)
+    @Column(name = "cvurl")
     private String cvUrl;
 
-    @Column(name = "texto_extraido", columnDefinition = "text")
+    @Column(name = "textoextraido", columnDefinition = "text")
     private String textoExtraido;
 
-    @Column(name = "embedding_vector", columnDefinition = "json")
+    @Column(name = "embeddingvector", columnDefinition = "text")
     private String embeddingVector;
+
+    @Column(name = "Habilidades", columnDefinition = "text")
+    private String Habilidades;
+
+    @Column(name = "Experiencia", columnDefinition = "text")
+    private String Experiencia;
+
+    @Column(name = "Educación", columnDefinition = "text")
+    private String Educacion;
+
 
     public PerfilPostulante() {
 
     }
 
-    public Integer getId_perfil() {
-        return id_perfil;
+    public PerfilPostulante(Integer idperfil, Usuario usuario, String cvUrl, String textoExtraido, String embeddingVector, String habilidades, String experiencia, String educacion) {
+        this.idperfil = idperfil;
+        this.usuario = usuario;
+        this.cvUrl = cvUrl;
+        this.textoExtraido = textoExtraido;
+        this.embeddingVector = embeddingVector;
+        this.Habilidades = habilidades;
+        this.Experiencia = experiencia;
+        this.Educacion = educacion;
     }
 
-    public void setId_perfil(Integer id_perfil) {
-        this.id_perfil = id_perfil;
+    public Integer getIdperfil() {
+        return idperfil;
+    }
+
+    public void setIdperfil(Integer id_perfil) {
+        this.idperfil = id_perfil;
     }
 
     public Usuario getUsuario() {
@@ -53,12 +74,28 @@ public class PerfilPostulante implements Serializable {
         this.cvUrl = cvUrl;
     }
 
-    public PerfilPostulante(Integer id_perfil, Usuario usuario, String cvUrl, String textoExtraido, String embeddingVector) {
-        this.id_perfil = id_perfil;
-        this.usuario = usuario;
-        this.cvUrl = cvUrl;
-        this.textoExtraido = textoExtraido;
-        this.embeddingVector = embeddingVector;
+    public String getHabilidades() {
+        return Habilidades;
+    }
+
+    public void setHabilidades(String habilidades) {
+        Habilidades = habilidades;
+    }
+
+    public String getEducacion() {
+        return Educacion;
+    }
+
+    public void setEducacion(String educación) {
+        Educacion = educación;
+    }
+
+    public String getExperiencia() {
+        return Experiencia;
+    }
+
+    public void setExperiencia(String experiencia) {
+        Experiencia = experiencia;
     }
 
     public String getTextoExtraido() {

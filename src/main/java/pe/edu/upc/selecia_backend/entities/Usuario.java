@@ -12,7 +12,7 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    private Integer idusuario;
 
     @Column(length = 100, nullable = false)
     private String username;
@@ -35,19 +35,19 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private Boolean estado;
 
-    @Column(nullable = false)
-    private java.sql.Date fecha_registro;
+    @Column(nullable = true)
+    private java.sql.Date fechaRegistro;
 
     @Column(length = 20)
     private String telefono;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "usuario")
     private List<Rol> roles;
 
 
-    public Usuario(Integer id_usuario, String username, String nombres, String apellidos, Boolean enabled, String correo, String contraseña, Boolean estado, Date fecha_registro, String telefono, List<Rol> roles) {
-        this.id_usuario = id_usuario;
+    public Usuario(Integer idusuario, String username, String nombres, String apellidos, Boolean enabled, String correo, String contraseña, Boolean estado, Date fechaRegistro, String telefono, List<Rol> roles) {
+        this.idusuario = idusuario;
         this.username = username;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -55,10 +55,12 @@ public class Usuario implements Serializable {
         this.correo = correo;
         this.contraseña = contraseña;
         this.estado = estado;
-        this.fecha_registro = fecha_registro;
+        this.fechaRegistro = fechaRegistro;
         this.telefono = telefono;
         this.roles = roles;
     }
+
+
 
     public Boolean getEnabled() {
         return enabled;
@@ -88,12 +90,12 @@ public class Usuario implements Serializable {
 
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Integer getidusuario() {
+        return idusuario;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setidusuario(Integer idusuario) {
+        this.idusuario = idusuario;
     }
 
     public String getNombres() {
@@ -136,12 +138,12 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
-    public Date getFecha_registro() {
-        return fecha_registro;
+    public Date getfechaRegistro() {
+        return fechaRegistro;
     }
 
-    public void setFecha_registro(Date fecha_registro) {
-        this.fecha_registro = fecha_registro;
+    public void setfechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public String getTelefono() {

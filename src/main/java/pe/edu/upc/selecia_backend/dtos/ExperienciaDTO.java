@@ -1,5 +1,7 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
+
 import java.sql.Date;
 
 public class ExperienciaDTO {
@@ -9,7 +11,7 @@ public class ExperienciaDTO {
     private Date fechaInicio;
     private Date fechaFin;
     private String descripcion;
-    private Integer perfilPostulanteId; // Solo el id para evitar incluir toda la entidad
+    private PerfilPostulante perfilPostulante; // Solo el id para evitar incluir toda la entidad
 
     // Getters y setters
 
@@ -61,11 +63,11 @@ public class ExperienciaDTO {
         this.descripcion = descripcion;
     }
 
-    public Integer getPerfilPostulanteId() {
-        return perfilPostulanteId;
+    public PerfilPostulante getPerfilPostulante() {
+        return perfilPostulante;
     }
 
-    public void setPerfilPostulanteId(Integer perfilPostulanteId) {
-        this.perfilPostulanteId = perfilPostulanteId;
+    public void setPerfilPostulante(PerfilPostulante perfilPostulante) {
+        this.perfilPostulante = perfilPostulante;
     }
 }

@@ -1,21 +1,12 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.Usuario;
+
 public class RolDTO {
     private Integer idRol;
     private String rol;
-    private Integer usuarioId; // Puede ser null
+    private Usuario usuario; // Puede ser null
 
-    // Constructor vacío
-    public RolDTO() {}
-
-    // Constructor con argumentos
-    public RolDTO(Integer idRol, String rol, Integer usuarioId) {
-        this.idRol = idRol;
-        this.rol = rol;
-        this.usuarioId = usuarioId;
-    }
-
-    // Getters y setters
     public Integer getIdRol() {
         return idRol;
     }
@@ -24,19 +15,19 @@ public class RolDTO {
         this.idRol = idRol;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public String getRol() {
         return rol;
     }
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public Integer getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
     }
 }

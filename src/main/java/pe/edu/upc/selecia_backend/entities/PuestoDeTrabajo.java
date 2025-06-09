@@ -9,27 +9,27 @@ public class PuestoDeTrabajo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_puesto;
+    private Integer idPuesto;
 
-    @Column(length = 255)
+    @Column(name = "descripcion",columnDefinition = "text")
     private String descripcion;
 
-    @Column(length = 255)
+    @Column(name = "requisitos",columnDefinition = "text")
     private String requisitos;
 
-    @Column(length = 100)
+    @Column(name = "lugar",length = 100)
     private String lugar;
 
-    @Column(name = "embedding_vector", columnDefinition = "json")
+    @Column(name = "embeddingvector",columnDefinition = "text")
     private String embeddingVector;
 
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id_empresa")
+    @JoinColumn(name = "idempresa")
     private Empresa empresa;
 
-    public PuestoDeTrabajo(Integer id_puesto, String descripcion, String requisitos, String lugar, String embeddingVector, Empresa empresa) {
-        this.id_puesto = id_puesto;
+    public PuestoDeTrabajo(Integer idPuesto, String descripcion, String requisitos, String lugar, String embeddingVector, Empresa empresa) {
+        this.idPuesto = idPuesto;
         this.descripcion = descripcion;
         this.requisitos = requisitos;
         this.lugar = lugar;
@@ -49,12 +49,12 @@ public class PuestoDeTrabajo implements Serializable {
 
     }
 
-    public Integer getId_puesto() {
-        return id_puesto;
+    public Integer getidPuesto() {
+        return idPuesto;
     }
 
-    public void setId_puesto(Integer id_puesto) {
-        this.id_puesto = id_puesto;
+    public void setidPuesto(Integer id_puesto) {
+        this.idPuesto = id_puesto;
     }
 
     public String getDescripcion() {

@@ -1,25 +1,14 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.Usuario;
+
 public class NotificacionesDTO {
     private Integer idNotificacion;
     private String descripcion;
     private Integer tipo;
     private Integer estado;
-    private Integer usuarioId; // Solo el id del usuario asociado
+    private Usuario usuario; // Solo el id del usuario asociado
 
-    // Constructor vacío
-    public NotificacionesDTO() {}
-
-    // Constructor con argumentos
-    public NotificacionesDTO(Integer idNotificacion, String descripcion, Integer tipo, Integer estado, Integer usuarioId) {
-        this.idNotificacion = idNotificacion;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.estado = estado;
-        this.usuarioId = usuarioId;
-    }
-
-    // Getters y setters
     public Integer getIdNotificacion() {
         return idNotificacion;
     }
@@ -52,11 +41,11 @@ public class NotificacionesDTO {
         this.estado = estado;
     }
 
-    public Integer getUsuarioId() {
-        return usuarioId;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

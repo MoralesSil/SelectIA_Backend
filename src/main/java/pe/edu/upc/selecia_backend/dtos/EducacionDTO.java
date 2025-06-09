@@ -1,5 +1,7 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
+
 import java.sql.Date;
 
 public class EducacionDTO {
@@ -9,7 +11,7 @@ public class EducacionDTO {
     private Date fechaInicio;
     private Date fechaFin;
     private String estado;
-    private Integer perfilPostulanteId; // Solo el id del perfil para evitar ciclos o información redundante
+    private PerfilPostulante perfilPostulante; // Solo el id del perfil para evitar ciclos o información redundante
 
     // Getters y setters
 
@@ -61,11 +63,11 @@ public class EducacionDTO {
         this.estado = estado;
     }
 
-    public Integer getPerfilPostulanteId() {
-        return perfilPostulanteId;
+    public PerfilPostulante getPerfilPostulante() {
+        return perfilPostulante;
     }
 
-    public void setPerfilPostulanteId(Integer perfilPostulanteId) {
-        this.perfilPostulanteId = perfilPostulanteId;
+    public void setPerfilPostulante(PerfilPostulante perfilPostulante) {
+        this.perfilPostulante = perfilPostulante;
     }
 }

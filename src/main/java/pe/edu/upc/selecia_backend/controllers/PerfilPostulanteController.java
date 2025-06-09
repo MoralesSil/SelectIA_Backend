@@ -1,13 +1,16 @@
 package pe.edu.upc.selecia_backend.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.selecia_backend.dtos.PerfilPostulanteDTO;
 import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
 import pe.edu.upc.selecia_backend.entities.Usuario;
 import pe.edu.upc.selecia_backend.serviceInterfaces.PerfilPostulanteService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/perfiles-postulante")
@@ -17,24 +20,32 @@ public class PerfilPostulanteController {
     private PerfilPostulanteService perfilPostulanteService;
 
     @PostMapping
-    public ResponseEntity<Void> insertar(@RequestBody PerfilPostulante perfilPostulante) {
+    public ResponseEntity<Void> insertar(@RequestBody PerfilPostulanteDTO perfilPostulanteDTO) {
+        ModelMapper m = new ModelMapper();
+        PerfilPostulante perfilPostulante = m.map(perfilPostulanteDTO, PerfilPostulante.class);
         perfilPostulanteService.insert(perfilPostulante);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<PerfilPostulante>> listar() {
+    public ResponseEntity<List<PerfilPostulanteDTO>> listar() {
         List<PerfilPostulante> lista = perfilPostulanteService.list();
-        return ResponseEntity.ok(lista);
+        ModelMapper m = new ModelMapper();
+        List<PerfilPostulanteDTO> listaDTO = lista.stream()
+                .map(p -> m.map(p, PerfilPostulanteDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PerfilPostulante> buscarPorId(@PathVariable("id") int id) {
+    public ResponseEntity<PerfilPostulanteDTO> buscarPorId(@PathVariable("id") int id) {
         PerfilPostulante perfil = perfilPostulanteService.findById(id);
         if (perfil == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(perfil);
+        ModelMapper m = new ModelMapper();
+        PerfilPostulanteDTO dto = m.map(perfil, PerfilPostulanteDTO.class);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping("/{id}")
@@ -44,14 +55,13 @@ public class PerfilPostulanteController {
     }
 
     @GetMapping("/usuario/{idUsuario}")
-    public ResponseEntity<PerfilPostulante> buscarPorUsuario(@PathVariable("idUsuario") int idUsuario) {
-        // Aquí se asume que tienes un método para obtener Usuario por ID
-        Usuario usuario = new Usuario();
-        usuario.setId_usuario(idUsuario); // Asegúrate que el atributo se llame exactamente así en tu entidad Usuario
+    public ResponseEntity<PerfilPostulanteDTO> buscarPorUsuario(@PathVariable("idUsuario") Usuario usuario) {
         PerfilPostulante perfil = perfilPostulanteService.findByUsuario(usuario);
         if (perfil == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(perfil);
+        ModelMapper m = new ModelMapper();
+        PerfilPostulanteDTO dto = m.map(perfil, PerfilPostulanteDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

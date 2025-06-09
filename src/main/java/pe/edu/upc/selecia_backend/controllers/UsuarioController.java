@@ -1,12 +1,16 @@
 package pe.edu.upc.selecia_backend.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.selecia_backend.dtos.UsuarioDTO;
 import pe.edu.upc.selecia_backend.entities.Usuario;
+import pe.edu.upc.selecia_backend.serviceInterfaces.RolService;
 import pe.edu.upc.selecia_backend.serviceInterfaces.UsuarioService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -15,16 +19,17 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
-    public ResponseEntity<Void> insertar(@RequestBody Usuario usuario) {
-        usuarioService.insert(usuario);
-        return ResponseEntity.ok().build();
-    }
+    @Autowired
+    private RolService rolService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listar() {
+    public ResponseEntity<List<UsuarioDTO>> listar() {
         List<Usuario> lista = usuarioService.list();
-        return ResponseEntity.ok(lista);
+        ModelMapper m = new ModelMapper();
+        List<UsuarioDTO> listaDTO = lista.stream()
+                .map(u -> m.map(u, UsuarioDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -34,20 +39,24 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscarPorId(@PathVariable("id") long id) {
+    public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable("id") long id) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario != null) {
-            return ResponseEntity.ok(usuario);
+            ModelMapper m = new ModelMapper();
+            UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+            return ResponseEntity.ok(dto);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/correo/{correo}")
-    public ResponseEntity<Usuario> buscarPorCorreo(@PathVariable("correo") String correo) {
+    public ResponseEntity<UsuarioDTO> buscarPorCorreo(@PathVariable("correo") String correo) {
         Usuario usuario = usuarioService.findByCorreo(correo);
         if (usuario != null) {
-            return ResponseEntity.ok(usuario);
+            ModelMapper m = new ModelMapper();
+            UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+            return ResponseEntity.ok(dto);
         } else {
             return ResponseEntity.notFound().build();
         }

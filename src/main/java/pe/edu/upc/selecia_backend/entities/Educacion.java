@@ -11,7 +11,7 @@ public class Educacion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_educacion;
+    private Integer ideducacion;
 
     @Column(length = 150)
     private String institucion;
@@ -19,24 +19,24 @@ public class Educacion implements Serializable {
     @Column(length = 100)
     private String titulo;
 
-    @Column(name = "fecha_inicio")
+    @Column(name = "fechainicio")
     private java.sql.Date fechaInicio;
 
-    @Column(name = "fecha_fin")
+    @Column(name = "fechafin")
     private java.sql.Date fechaFin;
 
     @Column(length = 50)
     private String estado;
 
     @ManyToOne
-    @JoinColumn(name = "perfil_postulante_id_perfil")
+    @JoinColumn(name = "idperfil")
     private PerfilPostulante perfilPostulante;
 
     public Educacion() {
 
     }
-    public Educacion(Integer id_educacion, String institucion, String titulo, Date fechaInicio, Date fechaFin, String estado, PerfilPostulante perfilPostulante) {
-        this.id_educacion = id_educacion;
+    public Educacion(Integer ideducacion, String institucion, String titulo, Date fechaInicio, Date fechaFin, String estado, PerfilPostulante perfilPostulante) {
+        this.ideducacion = ideducacion;
         this.institucion = institucion;
         this.titulo = titulo;
         this.fechaInicio = fechaInicio;
@@ -95,12 +95,12 @@ public class Educacion implements Serializable {
         this.institucion = institucion;
     }
 
-    public Integer getId_educacion() {
-        return id_educacion;
+    public Integer getIdeducacion() {
+        return ideducacion;
     }
 
-    public void setId_educacion(Integer id_educacion) {
-        this.id_educacion = id_educacion;
+    public void setIdeducacion(Integer id_educacion) {
+        this.ideducacion = id_educacion;
     }
 }
 

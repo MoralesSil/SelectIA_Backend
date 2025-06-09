@@ -4,25 +4,38 @@ import java.sql.Date;
 
 public class UsuarioDTO {
     private Integer idUsuario;
+    private String username;
     private String nombres;
     private String apellidos;
     private String correo;
     private Boolean estado;
+    private String contraseña;
+    private Boolean enabled;
     private Date fechaRegistro;
     private String telefono;
 
-    // Constructor vacío
-    public UsuarioDTO() {}
+    public String getContraseña() {
+        return contraseña;
+    }
 
-    // Constructor con argumentos
-    public UsuarioDTO(Integer idUsuario, String nombres, String apellidos, String correo, Boolean estado, Date fechaRegistro, String telefono) {
-        this.idUsuario = idUsuario;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.correo = correo;
-        this.estado = estado;
-        this.fechaRegistro = fechaRegistro;
-        this.telefono = telefono;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     // Getters y setters

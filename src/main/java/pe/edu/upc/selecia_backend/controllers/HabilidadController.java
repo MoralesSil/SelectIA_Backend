@@ -1,12 +1,15 @@
 package pe.edu.upc.selecia_backend.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.selecia_backend.dtos.HabilidadDTO;
 import pe.edu.upc.selecia_backend.entities.Habilidad;
 import pe.edu.upc.selecia_backend.serviceInterfaces.HabilidadService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/habilidad")
@@ -16,24 +19,32 @@ public class HabilidadController {
     private HabilidadService habilidadService;
 
     @PostMapping
-    public ResponseEntity<Void> insertar(@RequestBody Habilidad habilidad) {
+    public ResponseEntity<Void> insertar(@RequestBody HabilidadDTO habilidadDTO) {
+        ModelMapper m = new ModelMapper();
+        Habilidad habilidad = m.map(habilidadDTO, Habilidad.class);
         habilidadService.insert(habilidad);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Habilidad>> listar() {
+    public ResponseEntity<List<HabilidadDTO>> listar() {
         List<Habilidad> lista = habilidadService.list();
-        return ResponseEntity.ok(lista);
+        ModelMapper m = new ModelMapper();
+        List<HabilidadDTO> listaDTO = lista.stream()
+                .map(h -> m.map(h, HabilidadDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Habilidad> buscarPorId(@PathVariable("id") int id) {
+    public ResponseEntity<HabilidadDTO> buscarPorId(@PathVariable("id") int id) {
         Habilidad habilidad = habilidadService.findById(id);
         if (habilidad == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(habilidad);
+        ModelMapper m = new ModelMapper();
+        HabilidadDTO dto = m.map(habilidad, HabilidadDTO.class);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping("/{id}")

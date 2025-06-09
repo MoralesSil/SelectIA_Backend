@@ -3,22 +3,19 @@ package pe.edu.upc.selecia_backend.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import pe.edu.upc.selecia_backend.entities.Usuario;
-import pe.edu.upc.selecia_backend.repositories.UsuarioRepository;
-import pe.edu.upc.selecia_backend.serviceInterfaces.UsuarioService;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-//Clase 1
 @Component
 public class JwtTokenUtil implements Serializable {
 
@@ -29,8 +26,6 @@ public class JwtTokenUtil implements Serializable {
 
     @Value("${jwt.secret}")
     private String secret;
-    @Autowired
-    private UsuarioRepository repo;
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
@@ -46,9 +41,10 @@ public class JwtTokenUtil implements Serializable {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
+
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secret).build().parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired
@@ -59,11 +55,9 @@ public class JwtTokenUtil implements Serializable {
 
     //generate token for user
     public String generateToken(UserDetails userDetails) {
-        Usuario user = repo.findByUsername(userDetails.getUsername());
         Map<String, Object> claims = new HashMap<>();
-        claims.put("nombre", user.getNombres());
-        claims.put("id", user.getId_usuario());
-        claims.put("role",userDetails.getAuthorities().stream().map(r->r.getAuthority()).collect(Collectors.joining()));
+        claims.put("nombre", userDetails.getUsername());
+        claims.put("role", userDetails.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.joining()));
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
@@ -76,7 +70,7 @@ public class JwtTokenUtil implements Serializable {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
-                .signWith(SignatureAlgorithm.HS512, secret).compact();
+                .signWith(new SecretKeySpec(Base64.getDecoder().decode(secret), SignatureAlgorithm.HS512.getJcaName())).compact();
     }
 
     //validate token

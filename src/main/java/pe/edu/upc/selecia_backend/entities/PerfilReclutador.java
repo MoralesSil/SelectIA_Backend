@@ -5,23 +5,23 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "perfil_reclutador")
+@Table(name = "perfilreclutador")
 public class PerfilReclutador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_reclutador;
+    private Integer idreclutador;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id_usuario")
+    @JoinColumn(name = "idusuario")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id_empresa")
+    @JoinColumn(name = "idempresa")
     private Empresa empresa;
 
-    public PerfilReclutador(Integer id_reclutador, Usuario usuario, Empresa empresa) {
-        this.id_reclutador = id_reclutador;
+    public PerfilReclutador(Integer idreclutador, Usuario usuario, Empresa empresa) {
+        this.idreclutador = idreclutador;
         this.usuario = usuario;
         this.empresa = empresa;
     }
@@ -46,11 +46,11 @@ public class PerfilReclutador implements Serializable {
         this.usuario = usuario;
     }
 
-    public Integer getId_reclutador() {
-        return id_reclutador;
+    public Integer getIdreclutador() {
+        return idreclutador;
     }
 
-    public void setId_reclutador(Integer id_reclutador) {
-        this.id_reclutador = id_reclutador;
+    public void setIdreclutador(Integer id_reclutador) {
+        this.idreclutador = id_reclutador;
     }
 }

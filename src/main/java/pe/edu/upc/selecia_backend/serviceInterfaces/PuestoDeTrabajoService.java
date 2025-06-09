@@ -11,6 +11,7 @@ public interface PuestoDeTrabajoService {
 
     void delete(int id);
 
+    PuestoDeTrabajo findById_puesto(int id);
 
     List<PuestoDeTrabajo> findByLugar(String lugar);
 }

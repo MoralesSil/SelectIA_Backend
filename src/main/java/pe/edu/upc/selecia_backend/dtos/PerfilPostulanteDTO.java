@@ -1,47 +1,47 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import pe.edu.upc.selecia_backend.entities.Usuario;
+
 public class PerfilPostulanteDTO {
     private Integer idPerfil;
-    private Integer usuarioId;
+    private Usuario usuario;
     private String cvUrl;
     private String textoExtraido;
+    private String Habilidades;
+    private String Educacion;
+    private String Experiencia;
     private String embeddingVector;
 
-    // Constructor vacío
-    public PerfilPostulanteDTO() {}
+    public String getEmbeddingVector() {
+        return embeddingVector;
+    }
 
-    // Constructor con argumentos
-    public PerfilPostulanteDTO(Integer idPerfil, Integer usuarioId, String cvUrl, String textoExtraido, String embeddingVector) {
-        this.idPerfil = idPerfil;
-        this.usuarioId = usuarioId;
-        this.cvUrl = cvUrl;
-        this.textoExtraido = textoExtraido;
+    public void setEmbeddingVector(String embeddingVector) {
         this.embeddingVector = embeddingVector;
     }
 
-    // Getters y setters
-    public Integer getIdPerfil() {
-        return idPerfil;
+    public String getExperiencia() {
+        return Experiencia;
     }
 
-    public void setIdPerfil(Integer idPerfil) {
-        this.idPerfil = idPerfil;
+    public void setExperiencia(String experiencia) {
+        Experiencia = experiencia;
     }
 
-    public Integer getUsuarioId() {
-        return usuarioId;
+    public String getEducacion() {
+        return Educacion;
     }
 
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setEducacion(String educacion) {
+        Educacion = educacion;
     }
 
-    public String getCvUrl() {
-        return cvUrl;
+    public String getHabilidades() {
+        return Habilidades;
     }
 
-    public void setCvUrl(String cvUrl) {
-        this.cvUrl = cvUrl;
+    public void setHabilidades(String habilidades) {
+        Habilidades = habilidades;
     }
 
     public String getTextoExtraido() {
@@ -52,11 +52,27 @@ public class PerfilPostulanteDTO {
         this.textoExtraido = textoExtraido;
     }
 
-    public String getEmbeddingVector() {
-        return embeddingVector;
+    public String getCvUrl() {
+        return cvUrl;
     }
 
-    public void setEmbeddingVector(String embeddingVector) {
-        this.embeddingVector = embeddingVector;
+    public void setCvUrl(String cvUrl) {
+        this.cvUrl = cvUrl;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Integer getIdPerfil() {
+        return idPerfil;
+    }
+
+    public void setIdPerfil(Integer idPerfil) {
+        this.idPerfil = idPerfil;
     }
 }
