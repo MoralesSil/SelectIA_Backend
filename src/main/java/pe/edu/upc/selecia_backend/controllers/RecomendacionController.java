@@ -112,7 +112,7 @@ public class RecomendacionController {
     }*/
 
     @GetMapping("/rank/oferta/{idOferta}")
-    @PreAuthorize("hasAuthority('Reclutador')")
+    @PreAuthorize("hasAuthority('reclutador')")
     public ResponseEntity<?> rankCandidatosPorOferta(@PathVariable Integer idOferta) {
         OfertaLaboral oferta = ofertaLaboralService.findById(idOferta);
         if (oferta == null) {
