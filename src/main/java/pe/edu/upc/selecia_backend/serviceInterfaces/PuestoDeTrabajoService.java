@@ -13,5 +13,4 @@ public interface PuestoDeTrabajoService {
 
     PuestoDeTrabajo findById_puesto(int id);
 
-    List<PuestoDeTrabajo> findByLugar(String lugar);
 }

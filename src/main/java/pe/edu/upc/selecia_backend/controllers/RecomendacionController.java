@@ -87,6 +87,25 @@ public class RecomendacionController {
         return ResponseEntity.ok("Puesto guardado correctamente");
     }
 
+    @PostMapping("/puesto")
+    @PreAuthorize("hasAuthority('Postulante')")
+    public ResponseEntity<?> registrarPuesto1(@RequestBody PuestoDeTrabajoDTO puestoDTO) {
+        ModelMapper m = new ModelMapper();
+        PuestoDeTrabajo puesto = m.map(puestoDTO, PuestoDeTrabajo.class);
+
+        String descripcion = puesto.getDescripcion() + " " + puesto.getRequisitos();
+        List<Double> embedding = embeddingPythonService.getEmbedding(descripcion);
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            puesto.setEmbeddingVector(mapper.writeValueAsString(embedding));
+        } catch (Exception e) {
+            puesto.setEmbeddingVector("[]");
+        }
+        puestoDeTrabajoService.insert(puesto);
+        return ResponseEntity.ok("Puesto guardado correctamente");
+    }
+
     /*@GetMapping("/rank/{idPuesto}")
     @PreAuthorize("hasAuthority('Postulante')")
     public ResponseEntity<?> rankCandidatos(@PathVariable Integer idPuesto) {

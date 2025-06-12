@@ -35,8 +35,4 @@ public class PuestoDeTrabajoServiceImplements implements PuestoDeTrabajoService 
     }
 
 
-    @Override
-    public List<PuestoDeTrabajo> findByLugar(String lugar) {
-        return puestoDeTrabajoRepository.findByLugarIgnoreCase(lugar);
-    }
 }

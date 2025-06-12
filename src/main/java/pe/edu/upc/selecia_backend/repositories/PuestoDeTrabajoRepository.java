@@ -6,6 +6,5 @@ import pe.edu.upc.selecia_backend.entities.PuestoDeTrabajo;
 import java.util.List;
 
 public interface PuestoDeTrabajoRepository extends JpaRepository<PuestoDeTrabajo, Integer> {
-    List<PuestoDeTrabajo> findByLugarIgnoreCase(String lugar);
     PuestoDeTrabajo findByidPuesto(int id);
 }

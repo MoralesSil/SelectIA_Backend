@@ -42,13 +42,5 @@ public class PuestoDeTrabajoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/lugar/{lugar}")
-    public ResponseEntity<List<PuestoDeTrabajoDTO>> buscarPorLugar(@PathVariable("lugar") String lugar) {
-        List<PuestoDeTrabajo> lista = puestoDeTrabajoService.findByLugar(lugar);
-        ModelMapper m = new ModelMapper();
-        List<PuestoDeTrabajoDTO> listaDTO = lista.stream()
-                .map(p -> m.map(p, PuestoDeTrabajoDTO.class))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(listaDTO);
-    }
+
 }
