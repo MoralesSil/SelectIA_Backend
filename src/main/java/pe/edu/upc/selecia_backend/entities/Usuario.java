@@ -38,15 +38,17 @@ public class Usuario implements Serializable {
     @Column(nullable = true)
     private java.sql.Date fechaRegistro;
 
-    @Column(length = 20)
+    @Column(length = 11)
     private String telefono;
+
+    @Column(nullable = true)
+    private String imagenUrl;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario")
     private List<Rol> roles;
 
-
-    public Usuario(Integer idusuario, String username, String nombres, String apellidos, Boolean enabled, String correo, String contraseña, Boolean estado, Date fechaRegistro, String telefono, List<Rol> roles) {
+    public Usuario(Integer idusuario, String username, String nombres, String apellidos, Boolean enabled, String correo, String contraseña, Boolean estado, Date fechaRegistro, String telefono, String imagenUrl, List<Rol> roles) {
         this.idusuario = idusuario;
         this.username = username;
         this.nombres = nombres;
@@ -57,10 +59,33 @@ public class Usuario implements Serializable {
         this.estado = estado;
         this.fechaRegistro = fechaRegistro;
         this.telefono = telefono;
+        this.imagenUrl = imagenUrl;
         this.roles = roles;
     }
 
+    public Integer getIdusuario() {
+        return idusuario;
+    }
 
+    public void setIdusuario(Integer idusuario) {
+        this.idusuario = idusuario;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
 
     public Boolean getEnabled() {
         return enabled;

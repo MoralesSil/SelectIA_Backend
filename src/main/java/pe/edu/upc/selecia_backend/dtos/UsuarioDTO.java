@@ -13,6 +13,15 @@ public class UsuarioDTO {
     private Boolean enabled;
     private Date fechaRegistro;
     private String telefono;
+    private String imagenUrl;
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
 
     public String getContraseña() {
         return contraseña;
