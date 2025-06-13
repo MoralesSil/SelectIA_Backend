@@ -18,4 +18,6 @@ public interface UsuarioService {
     public Usuario listId(Long idUsuario);
 
     public int findByUsername(String username);
+
+    public Usuario findByUsername1(String username);
 }

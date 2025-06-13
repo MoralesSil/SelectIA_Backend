@@ -57,7 +57,7 @@ public class NotificacionesController {
     @GetMapping("/usuario/{usuarioId}")
     public ResponseEntity<List<NotificacionesDTO>> buscarPorUsuario(@PathVariable("usuarioId") int usuarioId) {
         Usuario usuario = new Usuario();
-        usuario.setidusuario(usuarioId);
+        usuario.setIdusuario(usuarioId);
         List<Notificaciones> lista = notificacionesService.findByUsuario(usuario);
         ModelMapper m = new ModelMapper();
         List<NotificacionesDTO> listaDTO = lista.stream()

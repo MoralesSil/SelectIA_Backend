@@ -32,6 +32,29 @@ public class UsuarioController {
         return ResponseEntity.ok(listaDTO);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> actualizar(
+            @PathVariable("id") long id,
+            @RequestBody UsuarioDTO usuarioDTO) {
+        // Busca el usuario existente
+        Usuario usuarioExistente = usuarioService.findById(id);
+        if (usuarioExistente == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Mapea los datos del DTO al entity
+        ModelMapper m = new ModelMapper();
+        m.map(usuarioDTO, usuarioExistente);
+
+        // Guarda el usuario actualizado
+        usuarioService.insert(usuarioExistente);
+
+        // Devuelve OK sin contenido (convención en PUT si no necesitas devolver el recurso)
+        return ResponseEntity.ok().build();
+    }
+
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable("id") long id) {
         usuarioService.delete(id);
@@ -61,4 +84,17 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<UsuarioDTO> buscarPorUsername(@PathVariable("username") String username) {
+        Usuario usuario = usuarioService.findByUsername1(username);
+        if (usuario != null) {
+            ModelMapper m = new ModelMapper();
+            UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

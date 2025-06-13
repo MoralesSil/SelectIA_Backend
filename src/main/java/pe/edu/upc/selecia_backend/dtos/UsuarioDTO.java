@@ -1,5 +1,7 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import jakarta.persistence.Column;
+
 import java.sql.Date;
 
 public class UsuarioDTO {
@@ -14,46 +16,30 @@ public class UsuarioDTO {
     private Date fechaRegistro;
     private String telefono;
     private String imagenUrl;
+    private String tipodeDocuemnto;
+    private Integer numeroDocumento;
+    private Date fechadeNacimiento;
+    private String distrito;
+    private String departamento;
+    private String pais;
+    private String direccion;
+    private String linkedin;
+    private String redSocialPrincipal;
 
-    public String getImagenUrl() {
-        return imagenUrl;
-    }
-
-    public void setImagenUrl(String imagenUrl) {
-        this.imagenUrl = imagenUrl;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    // Getters y setters
     public Integer getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNombres() {
@@ -88,6 +74,22 @@ public class UsuarioDTO {
         this.estado = estado;
     }
 
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -102,5 +104,85 @@ public class UsuarioDTO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    public String getTipodeDocuemnto() {
+        return tipodeDocuemnto;
+    }
+
+    public void setTipodeDocuemnto(String tipodeDocuemnto) {
+        this.tipodeDocuemnto = tipodeDocuemnto;
+    }
+
+    public Integer getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(Integer numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public Date getFechadeNacimiento() {
+        return fechadeNacimiento;
+    }
+
+    public void setFechadeNacimiento(Date fechadeNacimiento) {
+        this.fechadeNacimiento = fechadeNacimiento;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public String getRedSocialPrincipal() {
+        return redSocialPrincipal;
+    }
+
+    public void setRedSocialPrincipal(String redSocialPrincipal) {
+        this.redSocialPrincipal = redSocialPrincipal;
     }
 }

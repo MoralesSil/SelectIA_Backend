@@ -106,29 +106,6 @@ public class RecomendacionController {
         return ResponseEntity.ok("Puesto guardado correctamente");
     }
 
-    /*@GetMapping("/rank/{idPuesto}")
-    @PreAuthorize("hasAuthority('Postulante')")
-    public ResponseEntity<?> rankCandidatos(@PathVariable Integer idPuesto) {
-        PuestoDeTrabajo puesto = puestoDeTrabajoService.findById_puesto(idPuesto);
-        String descripcion = puesto.getDescripcion() + " " + puesto.getRequisitos();
-
-        List<PerfilPostulante> postulantes = perfilPostulanteService.list(); // o sólo los relevantes
-        List<List<Double>> embeddingsCandidatos = postulantes.stream()
-                .map(p -> EmbeddingUtils.parseEmbedding(p.getEmbeddingVector()))
-                .collect(Collectors.toList());
-
-        List<Double> scores = embeddingPythonService.getSimilarities(descripcion, embeddingsCandidatos);
-
-        List<CandidatoRankingDTO> resultados = new ArrayList<>();
-        for (int i = 0; i < postulantes.size(); i++) {
-            PerfilPostulante perfil = postulantes.get(i);
-            resultados.add(new CandidatoRankingDTO(perfil.getIdperfil(), scores.get(i)));
-        }
-
-        resultados.sort((a, b) -> Double.compare(b.getScore(), a.getScore())); // descendente
-
-        return ResponseEntity.ok(resultados);
-    }*/
 
     @GetMapping("/rank/oferta/{idOferta}")
     @PreAuthorize("hasAuthority('reclutador')")

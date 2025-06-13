@@ -32,7 +32,12 @@ public class UsuarioServiceImplements implements UsuarioService {
     @Override
     public int findByUsername(String username) {
         Usuario user = usuarioRepository.findByUsername(username);
-        return user.getidusuario();
+        return user.getIdusuario();
+    }
+
+    @Override
+    public Usuario findByUsername1(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     @Override

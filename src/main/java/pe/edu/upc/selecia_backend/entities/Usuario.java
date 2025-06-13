@@ -44,11 +44,39 @@ public class Usuario implements Serializable {
     @Column(nullable = true)
     private String imagenUrl;
 
+    @Column(nullable = true)
+    private String tipodeDocuemnto;
+
+    @Column(nullable = true)
+    private String distrito;
+
+    @Column(nullable = true)
+    private String departamento;
+
+    @Column(nullable = true)
+    private String pais;
+
+    @Column(nullable = true)
+    private String direccion;
+
+    @Column(nullable = true)
+    private String linkedin;
+
+    @Column(nullable = true)
+    private String redSocialPrincipal;
+
+    @Column(nullable = true)
+    private Integer numeroDocumento;
+
+    @Column(nullable = true)
+    private java.sql.Date fechadeNacimiento;
+
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario")
     private List<Rol> roles;
 
-    public Usuario(Integer idusuario, String username, String nombres, String apellidos, Boolean enabled, String correo, String contraseña, Boolean estado, Date fechaRegistro, String telefono, String imagenUrl, List<Rol> roles) {
+    public Usuario(Integer idusuario, String username, String nombres, String apellidos, Boolean enabled, String correo, String contraseña, Boolean estado, Date fechaRegistro, String telefono, String imagenUrl, String tipodeDocuemnto, String distrito, String departamento, String pais, String direccion, String linkedin, String redSocialPrincipal, Integer numeroDocumento, Date fechadeNacimiento, List<Rol> roles) {
         this.idusuario = idusuario;
         this.username = username;
         this.nombres = nombres;
@@ -60,7 +88,20 @@ public class Usuario implements Serializable {
         this.fechaRegistro = fechaRegistro;
         this.telefono = telefono;
         this.imagenUrl = imagenUrl;
+        this.tipodeDocuemnto = tipodeDocuemnto;
+        this.distrito = distrito;
+        this.departamento = departamento;
+        this.pais = pais;
+        this.direccion = direccion;
+        this.linkedin = linkedin;
+        this.redSocialPrincipal = redSocialPrincipal;
+        this.numeroDocumento = numeroDocumento;
+        this.fechadeNacimiento = fechadeNacimiento;
         this.roles = roles;
+    }
+
+    public Usuario() {
+
     }
 
     public Integer getIdusuario() {
@@ -71,56 +112,12 @@ public class Usuario implements Serializable {
         this.idusuario = idusuario;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public String getImagenUrl() {
-        return imagenUrl;
-    }
-
-    public void setImagenUrl(String imagenUrl) {
-        this.imagenUrl = imagenUrl;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public String getUsername() {
         return username;
     }
 
-    public List<Rol> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Usuario() {
-
-    }
-
-    public Integer getidusuario() {
-        return idusuario;
-    }
-
-    public void setidusuario(Integer idusuario) {
-        this.idusuario = idusuario;
     }
 
     public String getNombres() {
@@ -137,6 +134,14 @@ public class Usuario implements Serializable {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getCorreo() {
@@ -163,11 +168,11 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
-    public Date getfechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setfechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
@@ -177,5 +182,93 @@ public class Usuario implements Serializable {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    public String getTipodeDocuemnto() {
+        return tipodeDocuemnto;
+    }
+
+    public void setTipodeDocuemnto(String tipodeDocuemnto) {
+        this.tipodeDocuemnto = tipodeDocuemnto;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public String getRedSocialPrincipal() {
+        return redSocialPrincipal;
+    }
+
+    public void setRedSocialPrincipal(String redSocialPrincipal) {
+        this.redSocialPrincipal = redSocialPrincipal;
+    }
+
+    public Integer getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(Integer númeroDocumento) {
+        this.numeroDocumento = númeroDocumento;
+    }
+
+    public Date getFechadeNacimiento() {
+        return fechadeNacimiento;
+    }
+
+    public void setFechadeNacimiento(Date fechadeNacimiento) {
+        this.fechadeNacimiento = fechadeNacimiento;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }
