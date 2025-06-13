@@ -46,4 +46,9 @@ public class PostulacionServiceImplements implements PostulacionService {
         return postulacionRepository.findByOfertaLaboral(ofertaId);
     }
 
+    @Override
+    public Boolean existsByPerfilPostulante_IdPerfilAndOfertaLaboral_IdOferta(PerfilPostulante idPerfil, OfertaLaboral idOferta) {
+        return postulacionRepository.existsByPerfilPostulanteAndOfertaLaboral(idPerfil,idOferta);
+    }
+
 }

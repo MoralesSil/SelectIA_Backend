@@ -8,6 +8,7 @@ import pe.edu.upc.selecia_backend.dtos.PerfilPostulanteDTO;
 import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
 import pe.edu.upc.selecia_backend.entities.Usuario;
 import pe.edu.upc.selecia_backend.serviceInterfaces.PerfilPostulanteService;
+import pe.edu.upc.selecia_backend.serviceInterfaces.UsuarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,8 @@ public class PerfilPostulanteController {
 
     @Autowired
     private PerfilPostulanteService perfilPostulanteService;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PostMapping
     public ResponseEntity<Void> insertar(@RequestBody PerfilPostulanteDTO perfilPostulanteDTO) {
@@ -55,7 +58,8 @@ public class PerfilPostulanteController {
     }
 
     @GetMapping("/usuario/{idUsuario}")
-    public ResponseEntity<PerfilPostulanteDTO> buscarPorUsuario(@PathVariable("idUsuario") Usuario usuario) {
+    public ResponseEntity<PerfilPostulanteDTO> buscarPorUsuario(@PathVariable("idUsuario") int idUsuario) {
+        Usuario usuario = usuarioService.findById(idUsuario);
         PerfilPostulante perfil = perfilPostulanteService.findByUsuario(usuario);
         if (perfil == null) {
             return ResponseEntity.notFound().build();

@@ -18,4 +18,6 @@ public interface PostulacionService {
     List<Postulacion> findByPerfilPostulante(PerfilPostulante PerfilPostulante);
 
     List<Postulacion> findByOfertaLaboral(OfertaLaboral ofertaId);
+
+    Boolean existsByPerfilPostulante_IdPerfilAndOfertaLaboral_IdOferta(PerfilPostulante idPerfil, OfertaLaboral idOferta);
 }

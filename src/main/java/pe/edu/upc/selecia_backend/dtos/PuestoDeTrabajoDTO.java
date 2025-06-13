@@ -11,8 +11,8 @@ public class PuestoDeTrabajoDTO {
     private String categoria;
     private String jornada;
     private String modalidad;
-    private double salario;
-    private int vacante;
+    private Double salario;
+    private Integer vacante;
     private String descripcion;
     private String requisitos;
     private Empresa empresa;
@@ -100,19 +100,19 @@ public class PuestoDeTrabajoDTO {
         this.modalidad = modalidad;
     }
 
-    public double getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 
-    public int getVacante() {
+    public Integer getVacante() {
         return vacante;
     }
 
-    public void setVacante(int vacante) {
+    public void setVacante(Integer vacante) {
         this.vacante = vacante;
     }
 

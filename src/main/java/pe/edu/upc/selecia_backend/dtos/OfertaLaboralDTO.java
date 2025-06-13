@@ -12,7 +12,7 @@ public class OfertaLaboralDTO {
     private Boolean estado;
     private Date fechaCreacion;
     private Date fechaCulminacion;
-    private PerfilReclutador perfilReclutador;
+    private Integer idReclutador;
 
     public Integer getIdOferta() {
         return idOferta;
@@ -62,11 +62,11 @@ public class OfertaLaboralDTO {
         this.fechaCulminacion = fechaCulminacion;
     }
 
-    public PerfilReclutador getPerfilReclutador() {
-        return perfilReclutador;
+    public Integer getIdReclutador() {
+        return idReclutador;
     }
 
-    public void setPerfilReclutador(PerfilReclutador perfilReclutador) {
-        this.perfilReclutador = perfilReclutador;
+    public void setIdReclutador(Integer idReclutador) {
+        this.idReclutador = idReclutador;
     }
 }

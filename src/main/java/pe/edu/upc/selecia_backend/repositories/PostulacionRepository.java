@@ -10,5 +10,7 @@ import java.util.List;
 public interface PostulacionRepository extends JpaRepository<Postulacion, Integer> {
     List<Postulacion> findByPerfilPostulante(PerfilPostulante PerfilPostulante);
     List<Postulacion> findByOfertaLaboral(OfertaLaboral OfertaLaboral);
+    boolean existsByPerfilPostulanteAndOfertaLaboral(PerfilPostulante perfil, OfertaLaboral oferta);
+
 
 }

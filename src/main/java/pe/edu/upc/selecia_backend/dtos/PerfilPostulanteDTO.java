@@ -4,13 +4,21 @@ import pe.edu.upc.selecia_backend.entities.Usuario;
 
 public class PerfilPostulanteDTO {
     private Integer idPerfil;
-    private Usuario usuario;
+    private Integer idUsuario;
     private String cvUrl;
     private String textoExtraido;
     private String Habilidades;
     private String Educacion;
     private String Experiencia;
     private String embeddingVector;
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public String getEmbeddingVector() {
         return embeddingVector;
@@ -60,13 +68,6 @@ public class PerfilPostulanteDTO {
         this.cvUrl = cvUrl;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public Integer getIdPerfil() {
         return idPerfil;

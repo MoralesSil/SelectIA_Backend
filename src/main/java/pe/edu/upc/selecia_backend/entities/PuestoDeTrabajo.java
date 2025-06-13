@@ -33,10 +33,10 @@ public class PuestoDeTrabajo implements Serializable {
     private String Modalidad;
 
     @Column(name = "Salario")
-    private double Salario;
+    private Double Salario;
 
     @Column(name = "vacante")
-    private int vacante;
+    private Integer vacante;
 
     @Column(name = "descripcion",columnDefinition = "text")
     private String descripcion;
@@ -48,17 +48,14 @@ public class PuestoDeTrabajo implements Serializable {
     @Column(name = "embeddingvector",columnDefinition = "text")
     private String embeddingVector;
 
-
-
     @ManyToOne
     @JoinColumn(name = "idempresa")
     private Empresa empresa;
 
-    public int getVacante() {
-        return vacante;
+    public PuestoDeTrabajo() {
     }
 
-    public PuestoDeTrabajo(Integer idPuesto, String titulo, String pais, String departamento, String distrito, String categoria, String jornada, String modalidad, double salario, int vacante, String descripcion, String requisitos, String embeddingVector, Empresa empresa) {
+    public PuestoDeTrabajo(Integer idPuesto, String titulo, String pais, String departamento, String distrito, String categoria, String jornada, String modalidad, Double salario, Integer vacante, String descripcion, String requisitos, String embeddingVector, Empresa empresa) {
         this.idPuesto = idPuesto;
         this.titulo = titulo;
         Pais = pais;
@@ -75,64 +72,12 @@ public class PuestoDeTrabajo implements Serializable {
         this.empresa = empresa;
     }
 
-    public void setVacante(int vacante) {
-        this.vacante = vacante;
+    public Integer getIdPuesto() {
+        return idPuesto;
     }
 
-    public double getSalario() {
-        return Salario;
-    }
-
-    public void setSalario(double salario) {
-        Salario = salario;
-    }
-
-    public String getModalidad() {
-        return Modalidad;
-    }
-
-    public void setModalidad(String modalidad) {
-        Modalidad = modalidad;
-    }
-
-    public String getJornada() {
-        return Jornada;
-    }
-
-    public void setJornada(String jornada) {
-        Jornada = jornada;
-    }
-
-    public String getCategoria() {
-        return Categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        Categoria = categoria;
-    }
-
-    public String getDistrito() {
-        return Distrito;
-    }
-
-    public void setDistrito(String distrito) {
-        Distrito = distrito;
-    }
-
-    public String getDepartamento() {
-        return Departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        Departamento = departamento;
-    }
-
-    public String getPais() {
-        return Pais;
-    }
-
-    public void setPais(String pais) {
-        Pais = pais;
+    public void setIdPuesto(Integer idPuesto) {
+        this.idPuesto = idPuesto;
     }
 
     public String getTitulo() {
@@ -143,32 +88,68 @@ public class PuestoDeTrabajo implements Serializable {
         this.titulo = titulo;
     }
 
-    public Integer getIdPuesto() {
-        return idPuesto;
+    public String getPais() {
+        return Pais;
     }
 
-    public void setIdPuesto(Integer idPuesto) {
-        this.idPuesto = idPuesto;
+    public void setPais(String pais) {
+        Pais = pais;
     }
 
-    public String getEmbeddingVector() {
-        return embeddingVector;
+    public String getDepartamento() {
+        return Departamento;
     }
 
-    public void setEmbeddingVector(String embeddingVector) {
-        this.embeddingVector = embeddingVector;
+    public void setDepartamento(String departamento) {
+        Departamento = departamento;
     }
 
-    public PuestoDeTrabajo() {
-
+    public String getDistrito() {
+        return Distrito;
     }
 
-    public Integer getidPuesto() {
-        return idPuesto;
+    public void setDistrito(String distrito) {
+        Distrito = distrito;
     }
 
-    public void setidPuesto(Integer id_puesto) {
-        this.idPuesto = id_puesto;
+    public String getCategoria() {
+        return Categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        Categoria = categoria;
+    }
+
+    public String getJornada() {
+        return Jornada;
+    }
+
+    public void setJornada(String jornada) {
+        Jornada = jornada;
+    }
+
+    public String getModalidad() {
+        return Modalidad;
+    }
+
+    public void setModalidad(String modalidad) {
+        Modalidad = modalidad;
+    }
+
+    public Double getSalario() {
+        return Salario;
+    }
+
+    public void setSalario(Double salario) {
+        Salario = salario;
+    }
+
+    public Integer getVacante() {
+        return vacante;
+    }
+
+    public void setVacante(Integer vacante) {
+        this.vacante = vacante;
     }
 
     public String getDescripcion() {
@@ -187,6 +168,13 @@ public class PuestoDeTrabajo implements Serializable {
         this.requisitos = requisitos;
     }
 
+    public String getEmbeddingVector() {
+        return embeddingVector;
+    }
+
+    public void setEmbeddingVector(String embeddingVector) {
+        this.embeddingVector = embeddingVector;
+    }
 
     public Empresa getEmpresa() {
         return empresa;

@@ -5,7 +5,7 @@ import pe.edu.upc.selecia_backend.entities.Usuario;
 
 public class PerfilReclutadorDTO {
     private Integer idReclutador;
-    private Usuario usuario;
+    private Integer idUsuario;
     private Empresa empresa;
 
     public Integer getIdReclutador() {
@@ -16,12 +16,12 @@ public class PerfilReclutadorDTO {
         this.idReclutador = idReclutador;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public Empresa getEmpresa() {

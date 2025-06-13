@@ -8,7 +8,11 @@ import pe.edu.upc.selecia_backend.dtos.PostulacionDTO;
 import pe.edu.upc.selecia_backend.entities.OfertaLaboral;
 import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
 import pe.edu.upc.selecia_backend.entities.Postulacion;
+import pe.edu.upc.selecia_backend.entities.Usuario;
+import pe.edu.upc.selecia_backend.serviceInterfaces.OfertaLaboralService;
+import pe.edu.upc.selecia_backend.serviceInterfaces.PerfilPostulanteService;
 import pe.edu.upc.selecia_backend.serviceInterfaces.PostulacionService;
+import pe.edu.upc.selecia_backend.serviceInterfaces.UsuarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +23,13 @@ public class PostulacionController {
 
     @Autowired
     private PostulacionService postulacionService;
+    @Autowired
+    private PerfilPostulanteService perfilPostulanteService;
+    @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private OfertaLaboralService ofertaLaboralService;
+
 
     @PostMapping
     public ResponseEntity<Void> insertar(@RequestBody PostulacionDTO postulacionDTO) {
@@ -26,6 +37,17 @@ public class PostulacionController {
         Postulacion postulacion = m.map(postulacionDTO, Postulacion.class);
         postulacionService.insert(postulacion);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/existe")
+    public boolean existePostulacion(
+            @RequestParam Integer idUsuario,
+            @RequestParam Integer idOferta
+    ) {
+        Usuario usuario = usuarioService.findById(idUsuario);
+        PerfilPostulante perfil = perfilPostulanteService.findByUsuario(usuario);
+        OfertaLaboral oferta = ofertaLaboralService.findById(idOferta);
+        return postulacionService.existsByPerfilPostulante_IdPerfilAndOfertaLaboral_IdOferta(perfil, oferta);
     }
 
     @GetMapping
