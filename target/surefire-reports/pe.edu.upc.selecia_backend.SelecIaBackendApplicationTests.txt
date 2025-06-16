@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: pe.edu.upc.selecia_backend.SelecIaBackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.03 s -- in pe.edu.upc.selecia_backend.SelecIaBackendApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.70 s -- in pe.edu.upc.selecia_backend.SelecIaBackendApplicationTests
