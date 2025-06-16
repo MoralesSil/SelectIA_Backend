@@ -89,7 +89,6 @@ public class RecomendacionController {
     }
 
     @PostMapping("/puesto")
-    @PreAuthorize("hasAuthority('Postulante')")
     public ResponseEntity<?> registrarPuesto1(@RequestBody PuestoDeTrabajoDTO puestoDTO) {
         ModelMapper m = new ModelMapper();
         PuestoDeTrabajo puesto = m.map(puestoDTO, PuestoDeTrabajo.class);
@@ -104,12 +103,11 @@ public class RecomendacionController {
             puesto.setEmbeddingVector("[]");
         }
         puestoDeTrabajoService.insert(puesto);
-        return ResponseEntity.ok("Puesto guardado correctamente");
+        return ResponseEntity.ok().build();
     }
 
 
     @GetMapping("/rank/oferta/{idOferta}")
-    @PreAuthorize("hasAuthority('reclutador')")
     public ResponseEntity<?> rankCandidatosPorOferta(@PathVariable Integer idOferta) {
         OfertaLaboral oferta = ofertaLaboralService.findById(idOferta);
         if (oferta == null) {
@@ -134,7 +132,7 @@ public class RecomendacionController {
         List<CandidatoRankingDTO> resultados = new ArrayList<>();
         for (int i = 0; i < perfilesPostulantes.size(); i++) {
             PerfilPostulante perfil = perfilesPostulantes.get(i);
-            resultados.add(new CandidatoRankingDTO(perfil.getIdperfil(), scores.get(i)));
+            resultados.add(new CandidatoRankingDTO(perfil.getIdperfil(), scores.get(i), perfil.getUsuario().getUsername()));
         }
         resultados.sort((a, b) -> Double.compare(b.getScore(), a.getScore()));
 
