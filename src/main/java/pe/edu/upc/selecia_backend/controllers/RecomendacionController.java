@@ -93,7 +93,7 @@ public class RecomendacionController {
         ModelMapper m = new ModelMapper();
         PuestoDeTrabajo puesto = m.map(puestoDTO, PuestoDeTrabajo.class);
 
-        String descripcion = puesto.getDescripcion() + " " + puesto.getRequisitos();
+        String descripcion = puesto.getRequisitos();
         List<Double> embedding = embeddingPythonService.getEmbedding(descripcion);
 
         ObjectMapper mapper = new ObjectMapper();
