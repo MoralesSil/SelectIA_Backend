@@ -66,6 +66,21 @@ public class JwtAuthenticationController {
 		rolService.insert(rol);
 		return ResponseEntity.ok().build();
 	}
+
+	@PostMapping("/registrarreclutador")
+	public ResponseEntity<Void> registrarreclutador(@RequestBody UsuarioDTO usuario) {
+		ModelMapper m = new ModelMapper();
+		Usuario urs = m.map(usuario, Usuario.class);
+		String encodedPassword = passwordEncoder.encode(urs.getContraseña());
+		urs.setContraseña(encodedPassword);
+		usuarioService.insert(urs);
+		Rol rol = new Rol();
+		rol.setRol("Reclutador");
+		rol.setUsuario(urs);
+		rolService.insert(rol);
+		return ResponseEntity.ok().build();
+	}
+
 	@Autowired
 	private PerfilPostulanteService perfilPostulanteService;
 	@Autowired
