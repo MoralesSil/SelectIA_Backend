@@ -154,7 +154,7 @@ public class RecomendacionController {
         }
 
         // 2. Llama a microservicio Python con solo la URL
-        String pythonUrl = "http://localhost:8000/parse_cv_url";
+        String pythonUrl = "https://mi-api-490119044745.us-central1.run.app/parse_cv_url";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
@@ -210,7 +210,7 @@ public class RecomendacionController {
         }
 
         // 2. Llama al microservicio Python con la nueva URL (si cambió)
-        String pythonUrl = "http://localhost:8000/parse_cv_url";
+        String pythonUrl = "https://mi-api-490119044745.us-central1.run.app/parse_cv_url";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 

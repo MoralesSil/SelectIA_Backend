@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class EmbeddingPythonService {
 
-    private final WebClient webClient = WebClient.create("http://localhost:8000");
+    private final WebClient webClient = WebClient.create("https://mi-api-490119044745.us-central1.run.app");
 
     // Obtiene el embedding para un texto
     public List<Double> getEmbedding(String text) {
