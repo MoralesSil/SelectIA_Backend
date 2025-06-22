@@ -77,45 +77,6 @@ public class PostulacionController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/perfil-postulante/{perfilId}")
-    public ResponseEntity<List<PostulacionDTO>> buscarPorPerfilPostulante(@PathVariable("perfilId") int perfilId) {
-        PerfilPostulante perfil = new PerfilPostulante();
-        perfil.setIdperfil(perfilId);
-    
-        List<Postulacion> lista = postulacionService.findByPerfilPostulante(perfil);
-    
-        List<PostulacionDTO> listaDTO = lista.stream().map(p -> {
-            PostulacionDTO dto = new PostulacionDTO();
-            dto.setIdPostulacion(p.getIdPostulacion());
-            dto.setFechaPostulacion(p.getFechaPostulacion());
-            dto.setEstado(p.getEstado());
-    
-            // Solo enviar el ID del perfil
-            PerfilPostulante perfilDTO = new PerfilPostulante();
-            perfilDTO.setIdperfil(p.getPerfilPostulante().getIdperfil());
-            dto.setPerfilPostulante(perfilDTO);
-    
-            // Enviar solo los datos necesarios de la oferta laboral
-            OfertaLaboral ofertaDTO = new OfertaLaboral();
-            ofertaDTO.setIdoferta(p.getOfertaLaboral().getIdoferta());
-            ofertaDTO.setEstado(p.getOfertaLaboral().getEstado());
-            ofertaDTO.setFechaCreacion(p.getOfertaLaboral().getFechaCreacion());
-            ofertaDTO.setFechaCulminacion(p.getOfertaLaboral().getFechaCulminacion());
-    
-            // Adjuntar solo el puesto de trabajo con título y descripción
-            if (p.getOfertaLaboral().getPuestoDeTrabajo() != null) {
-                ofertaDTO.setPuestoDeTrabajo(p.getOfertaLaboral().getPuestoDeTrabajo());
-            }
-    
-            dto.setOfertaLaboral(ofertaDTO);
-    
-            return dto;
-        }).collect(Collectors.toList());
-    
-        return ResponseEntity.ok(listaDTO);
-    }
-
-
     @GetMapping("/oferta-laboral/{ofertaId}")
     public ResponseEntity<List<PostulacionDTO>> buscarPorOfertaLaboral(@PathVariable("ofertaId") int ofertaId) {
         OfertaLaboral oferta = new OfertaLaboral();
