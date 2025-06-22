@@ -77,6 +77,18 @@ public class PostulacionController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/perfil-postulante/{perfilId}")
+    public ResponseEntity<List<PostulacionDTO>> buscarPorPerfilPostulante(@PathVariable("perfilId") int perfilId) {
+        PerfilPostulante perfil = new PerfilPostulante();
+        perfil.setIdperfil(perfilId);
+        List<Postulacion> lista = postulacionService.findByPerfilPostulante(perfil);
+        ModelMapper m = new ModelMapper();
+        List<PostulacionDTO> listaDTO = lista.stream()
+                .map(p -> m.map(p, PostulacionDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
+    }
+
     @GetMapping("/oferta-laboral/{ofertaId}")
     public ResponseEntity<List<PostulacionDTO>> buscarPorOfertaLaboral(@PathVariable("ofertaId") int ofertaId) {
         OfertaLaboral oferta = new OfertaLaboral();
