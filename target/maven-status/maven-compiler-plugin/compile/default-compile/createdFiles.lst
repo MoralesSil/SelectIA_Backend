@@ -26,6 +26,7 @@ pe\edu\upc\selecia_backend\entities\OfertaLaboral.class
 pe\edu\upc\selecia_backend\dtos\RolDTO.class
 pe\edu\upc\selecia_backend\controllers\PostulacionController.class
 pe\edu\upc\selecia_backend\dtos\HabilidadPostulanteDTO.class
+pe\edu\upc\selecia_backend\dtos\VerPostulacionDTO.class
 pe\edu\upc\selecia_backend\repositories\HabillidadRepository.class
 pe\edu\upc\selecia_backend\serviceInterfaces\PostulacionService.class
 pe\edu\upc\selecia_backend\repositories\NotificacionesRepository.class
