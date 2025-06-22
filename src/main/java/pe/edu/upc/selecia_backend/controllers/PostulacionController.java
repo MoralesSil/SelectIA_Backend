@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.selecia_backend.dtos.PostulacionDTO;
+import pe.edu.upc.selecia_backend.dtos.VerPostulacionDTO;
 import pe.edu.upc.selecia_backend.entities.OfertaLaboral;
 import pe.edu.upc.selecia_backend.entities.PerfilPostulante;
 import pe.edu.upc.selecia_backend.entities.Postulacion;
@@ -78,13 +79,13 @@ public class PostulacionController {
     }
 
     @GetMapping("/perfil-postulante/{perfilId}")
-    public ResponseEntity<List<PostulacionDTO>> buscarPorPerfilPostulante(@PathVariable("perfilId") int perfilId) {
+    public ResponseEntity<List<VerPostulacionDTO>> buscarPorPerfilPostulante(@PathVariable("perfilId") int perfilId) {
         PerfilPostulante perfil = new PerfilPostulante();
         perfil.setIdperfil(perfilId);
         List<Postulacion> lista = postulacionService.findByPerfilPostulante(perfil);
         ModelMapper m = new ModelMapper();
-        List<PostulacionDTO> listaDTO = lista.stream()
-                .map(p -> m.map(p, PostulacionDTO.class))
+        List<VerPostulacionDTO> listaDTO = lista.stream()
+                .map(p -> m.map(p, VerPostulacionDTO.class))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(listaDTO);
     }
