@@ -91,13 +91,13 @@ public class PostulacionController {
     }
 
     @GetMapping("/oferta-laboral/{ofertaId}")
-    public ResponseEntity<List<PostulacionDTO>> buscarPorOfertaLaboral(@PathVariable("ofertaId") int ofertaId) {
+    public ResponseEntity<List<VerPostulacionDTO>> buscarPorOfertaLaboral(@PathVariable("ofertaId") int ofertaId) {
         OfertaLaboral oferta = new OfertaLaboral();
         oferta.setIdoferta(ofertaId);
         List<Postulacion> lista = postulacionService.findByOfertaLaboral(oferta);
         ModelMapper m = new ModelMapper();
-        List<PostulacionDTO> listaDTO = lista.stream()
-                .map(p -> m.map(p, PostulacionDTO.class))
+        List<VerPostulacionDTO> listaDTO = lista.stream()
+                .map(p -> m.map(p, VerPostulacionDTO.class))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(listaDTO);
     }
