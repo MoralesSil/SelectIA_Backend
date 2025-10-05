@@ -1,5 +1,6 @@
 package pe.edu.upc.selecia_backend.dtos;
 
+import jakarta.persistence.Column;
 import pe.edu.upc.selecia_backend.entities.Usuario;
 
 public class PerfilPostulanteDTO {
@@ -7,10 +8,16 @@ public class PerfilPostulanteDTO {
     private Integer idUsuario;
     private String cvUrl;
     private String textoExtraido;
-    private String Habilidades;
+    private String habilidadesTecnicas;
+    private String habilidadesBlandas;
     private String Educacion;
     private String Experiencia;
-    private String embeddingVector;
+    private String certificaciones;
+    private String setEmbEducacion;
+    private String setEmbExperiencia;
+    private String setEmbHabTec;
+    private String setEmbHabBlandas;
+    private String setcertificaciones;
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -20,12 +27,52 @@ public class PerfilPostulanteDTO {
         this.idUsuario = idUsuario;
     }
 
-    public String getEmbeddingVector() {
-        return embeddingVector;
+    public String getCertificaciones() {
+        return certificaciones;
     }
 
-    public void setEmbeddingVector(String embeddingVector) {
-        this.embeddingVector = embeddingVector;
+    public void setCertificaciones(String certificaciones) {
+        this.certificaciones = certificaciones;
+    }
+
+    public String getSetEmbEducacion() {
+        return setEmbEducacion;
+    }
+
+    public void setSetEmbEducacion(String setEmbEducacion) {
+        this.setEmbEducacion = setEmbEducacion;
+    }
+
+    public String getSetEmbExperiencia() {
+        return setEmbExperiencia;
+    }
+
+    public void setSetEmbExperiencia(String setEmbExperiencia) {
+        this.setEmbExperiencia = setEmbExperiencia;
+    }
+
+    public String getSetEmbHabTec() {
+        return setEmbHabTec;
+    }
+
+    public void setSetEmbHabTec(String setEmbHabTec) {
+        this.setEmbHabTec = setEmbHabTec;
+    }
+
+    public String getSetEmbHabBlandas() {
+        return setEmbHabBlandas;
+    }
+
+    public void setSetEmbHabBlandas(String setEmbHabBlandas) {
+        this.setEmbHabBlandas = setEmbHabBlandas;
+    }
+
+    public String getSetcertificaciones() {
+        return setcertificaciones;
+    }
+
+    public void setSetcertificaciones(String setcertificaciones) {
+        this.setcertificaciones = setcertificaciones;
     }
 
     public String getExperiencia() {
@@ -44,14 +91,6 @@ public class PerfilPostulanteDTO {
         Educacion = educacion;
     }
 
-    public String getHabilidades() {
-        return Habilidades;
-    }
-
-    public void setHabilidades(String habilidades) {
-        Habilidades = habilidades;
-    }
-
     public String getTextoExtraido() {
         return textoExtraido;
     }
@@ -68,6 +107,21 @@ public class PerfilPostulanteDTO {
         this.cvUrl = cvUrl;
     }
 
+    public String getHabilidadesTecnicas() {
+        return habilidadesTecnicas;
+    }
+
+    public void setHabilidadesTecnicas(String habilidadesTecnicas) {
+        this.habilidadesTecnicas = habilidadesTecnicas;
+    }
+
+    public String getHabilidadesBlandas() {
+        return habilidadesBlandas;
+    }
+
+    public void setHabilidadesBlandas(String habilidadesBlandas) {
+        this.habilidadesBlandas = habilidadesBlandas;
+    }
 
     public Integer getIdPerfil() {
         return idPerfil;

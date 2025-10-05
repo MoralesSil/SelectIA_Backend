@@ -12,15 +12,34 @@ public class PuestoDeTrabajoDTO {
     private String jornada;
     private String modalidad;
     private Double salario;
-    private Integer vacante;
     private String descripcion;
     private String requisitos;
     private Empresa empresa;
 
+    // ===== NUEVOS CAMPOS PARA COMPARACIÓN =====
+    private String experiencia;
+    private String educacion;
+    private String habilidadesTecnicas;
+    private String habilidadesBlandas;
+    private String certificaciones;
+
+    // ===== NUEVOS CAMPOS DE EMBEDDINGS =====
+    private String setEmbExperiencia;
+    private String setEmbEducacion;
+    private String setEmbHabTec;
+    private String setEmbHabBlandas;
+    private String setEmbCertificaciones;
+
     public PuestoDeTrabajoDTO() {
     }
 
-    public PuestoDeTrabajoDTO(Integer idPuesto, String titulo, String pais, String departamento, String distrito, String categoria, String jornada, String modalidad, double salario, int vacante, String descripcion, String requisitos, Empresa empresa) {
+    public PuestoDeTrabajoDTO(Integer idPuesto, String titulo, String pais, String departamento, String distrito,
+                              String categoria, String jornada, String modalidad, Double salario,
+                              String descripcion, String requisitos, Empresa empresa,
+                              String experiencia, String educacion,
+                              String habilidadesTecnicas, String habilidadesBlandas, String certificaciones,
+                              String setEmbExperiencia, String setEmbEducacion,
+                              String setEmbHabTec, String setEmbHabBlandas, String setEmbCertificaciones) {
         this.idPuesto = idPuesto;
         this.titulo = titulo;
         this.pais = pais;
@@ -30,113 +49,85 @@ public class PuestoDeTrabajoDTO {
         this.jornada = jornada;
         this.modalidad = modalidad;
         this.salario = salario;
-        this.vacante = vacante;
         this.descripcion = descripcion;
         this.requisitos = requisitos;
         this.empresa = empresa;
+        this.experiencia = experiencia;
+        this.educacion = educacion;
+        this.habilidadesTecnicas = habilidadesTecnicas;
+        this.habilidadesBlandas = habilidadesBlandas;
+        this.certificaciones = certificaciones;
+        this.setEmbExperiencia = setEmbExperiencia;
+        this.setEmbEducacion = setEmbEducacion;
+        this.setEmbHabTec = setEmbHabTec;
+        this.setEmbHabBlandas = setEmbHabBlandas;
+        this.setEmbCertificaciones = setEmbCertificaciones;
     }
 
-    public Integer getIdPuesto() {
-        return idPuesto;
-    }
+    public Integer getIdPuesto() { return idPuesto; }
+    public void setIdPuesto(Integer idPuesto) { this.idPuesto = idPuesto; }
 
-    public void setIdPuesto(Integer idPuesto) {
-        this.idPuesto = idPuesto;
-    }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getPais() { return pais; }
+    public void setPais(String pais) { this.pais = pais; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public String getDepartamento() { return departamento; }
+    public void setDepartamento(String departamento) { this.departamento = departamento; }
 
-    public String getPais() {
-        return pais;
-    }
+    public String getDistrito() { return distrito; }
+    public void setDistrito(String distrito) { this.distrito = distrito; }
 
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 
-    public String getDepartamento() {
-        return departamento;
-    }
+    public String getJornada() { return jornada; }
+    public void setJornada(String jornada) { this.jornada = jornada; }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
+    public String getModalidad() { return modalidad; }
+    public void setModalidad(String modalidad) { this.modalidad = modalidad; }
 
-    public String getDistrito() {
-        return distrito;
-    }
+    public Double getSalario() { return salario; }
+    public void setSalario(Double salario) { this.salario = salario; }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getCategoria() {
-        return categoria;
-    }
+    public String getRequisitos() { return requisitos; }
+    public void setRequisitos(String requisitos) { this.requisitos = requisitos; }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+    public Empresa getEmpresa() { return empresa; }
+    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 
-    public String getJornada() {
-        return jornada;
-    }
+    // ===== NUEVOS GETTERS/SETTERS =====
+    public String getExperiencia() { return experiencia; }
+    public void setExperiencia(String experiencia) { this.experiencia = experiencia; }
 
-    public void setJornada(String jornada) {
-        this.jornada = jornada;
-    }
+    public String getEducacion() { return educacion; }
+    public void setEducacion(String educacion) { this.educacion = educacion; }
 
-    public String getModalidad() {
-        return modalidad;
-    }
+    public String getHabilidadesTecnicas() { return habilidadesTecnicas; }
+    public void setHabilidadesTecnicas(String habilidadesTecnicas) { this.habilidadesTecnicas = habilidadesTecnicas; }
 
-    public void setModalidad(String modalidad) {
-        this.modalidad = modalidad;
-    }
+    public String getHabilidadesBlandas() { return habilidadesBlandas; }
+    public void setHabilidadesBlandas(String habilidadesBlandas) { this.habilidadesBlandas = habilidadesBlandas; }
 
-    public Double getSalario() {
-        return salario;
-    }
+    public String getCertificaciones() { return certificaciones; }
+    public void setCertificaciones(String certificaciones) { this.certificaciones = certificaciones; }
 
-    public void setSalario(Double salario) {
-        this.salario = salario;
-    }
+    public String getSetEmbExperiencia() { return setEmbExperiencia; }
+    public void setSetEmbExperiencia(String setEmbExperiencia) { this.setEmbExperiencia = setEmbExperiencia; }
 
-    public Integer getVacante() {
-        return vacante;
-    }
+    public String getSetEmbEducacion() { return setEmbEducacion; }
+    public void setSetEmbEducacion(String setEmbEducacion) { this.setEmbEducacion = setEmbEducacion; }
 
-    public void setVacante(Integer vacante) {
-        this.vacante = vacante;
-    }
+    public String getSetEmbHabTec() { return setEmbHabTec; }
+    public void setSetEmbHabTec(String setEmbHabTec) { this.setEmbHabTec = setEmbHabTec; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getSetEmbHabBlandas() { return setEmbHabBlandas; }
+    public void setSetEmbHabBlandas(String setEmbHabBlandas) { this.setEmbHabBlandas = setEmbHabBlandas; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getRequisitos() {
-        return requisitos;
-    }
-
-    public void setRequisitos(String requisitos) {
-        this.requisitos = requisitos;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
+    public String getSetEmbCertificaciones() { return setEmbCertificaciones; }
+    public void setSetEmbCertificaciones(String setEmbCertificaciones) { this.setEmbCertificaciones = setEmbCertificaciones; }
 }

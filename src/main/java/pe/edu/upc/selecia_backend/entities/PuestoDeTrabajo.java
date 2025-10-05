@@ -14,39 +14,64 @@ public class PuestoDeTrabajo implements Serializable {
     @Column(name = "titulo")
     private String titulo;
 
-    @Column(name = "Pais")
-    private String Pais;
+    @Column(name = "pais")
+    private String pais;
 
-    @Column(name = "Departamento")
-    private String Departamento;
+    @Column(name = "departamento")
+    private String departamento;
 
-    @Column(name = "Distrito")
-    private String Distrito;
+    @Column(name = "distrito")
+    private String distrito;
 
-    @Column(name = "Categoria")
-    private String Categoria;
+    @Column(name = "categoria")
+    private String categoria;
 
-    @Column(name = "Jornada")
-    private String Jornada;
+    @Column(name = "jornada")
+    private String jornada;
 
-    @Column(name = "Modalidad")
-    private String Modalidad;
+    @Column(name = "modalidad")
+    private String modalidad;
 
-    @Column(name = "Salario")
-    private Double Salario;
+    @Column(name = "salario")
+    private Double salario;
 
-    @Column(name = "vacante")
-    private Integer vacante;
-
-    @Column(name = "descripcion",columnDefinition = "text")
+    @Column(name = "descripcion", columnDefinition = "text")
     private String descripcion;
 
-    @Column(name = "requisitos",columnDefinition = "text")
+    @Column(name = "requisitos", columnDefinition = "text")
     private String requisitos;
 
+    // ====== CAMPOS DE TEXTO COMPARABLES ======
+    @Column(name = "experiencia", columnDefinition = "text")
+    private String experiencia;
 
-    @Column(name = "embeddingvector",columnDefinition = "text")
-    private String embeddingVector;
+    @Column(name = "educacion", columnDefinition = "text")
+    private String educacion;
+
+    @Column(name = "habilidades_tecnicas", columnDefinition = "text")
+    private String habilidadesTecnicas;
+
+    @Column(name = "habilidades_blandas", columnDefinition = "text")
+    private String habilidadesBlandas;
+
+    @Column(name = "certificaciones", columnDefinition = "text")
+    private String certificaciones;
+
+    // ====== EMBEDDINGS POR CAMPO ======
+    @Column(name = "setEmbExperiencia", columnDefinition = "text")
+    private String setEmbExperiencia;
+
+    @Column(name = "setEmbEducacion", columnDefinition = "text")
+    private String setEmbEducacion;
+
+    @Column(name = "setEmbHabTec", columnDefinition = "text")
+    private String setEmbHabTec;
+
+    @Column(name = "setEmbHabBlandas", columnDefinition = "text")
+    private String setEmbHabBlandas;
+
+    @Column(name = "setEmbCertificaciones", columnDefinition = "text")
+    private String setEmbCertificaciones;
 
     @ManyToOne
     @JoinColumn(name = "idempresa")
@@ -55,132 +80,102 @@ public class PuestoDeTrabajo implements Serializable {
     public PuestoDeTrabajo() {
     }
 
-    public PuestoDeTrabajo(Integer idPuesto, String titulo, String pais, String departamento, String distrito, String categoria, String jornada, String modalidad, Double salario, Integer vacante, String descripcion, String requisitos, String embeddingVector, Empresa empresa) {
+    public PuestoDeTrabajo(Integer idPuesto, String titulo, String pais, String departamento, String distrito,
+                           String categoria, String jornada, String modalidad, Double salario,
+                           String descripcion, String requisitos,
+                           String experiencia, String educacion,
+                           String habilidadesTecnicas, String habilidadesBlandas, String certificaciones,
+                           String setEmbExperiencia, String setEmbEducacion,
+                           String setEmbHabTec, String setEmbHabBlandas, String setEmbCertificaciones,
+                           Empresa empresa) {
         this.idPuesto = idPuesto;
         this.titulo = titulo;
-        Pais = pais;
-        Departamento = departamento;
-        Distrito = distrito;
-        Categoria = categoria;
-        Jornada = jornada;
-        Modalidad = modalidad;
-        Salario = salario;
-        this.vacante = vacante;
+        this.pais = pais;
+        this.departamento = departamento;
+        this.distrito = distrito;
+        this.categoria = categoria;
+        this.jornada = jornada;
+        this.modalidad = modalidad;
+        this.salario = salario;
         this.descripcion = descripcion;
         this.requisitos = requisitos;
-        this.embeddingVector = embeddingVector;
+        this.experiencia = experiencia;
+        this.educacion = educacion;
+        this.habilidadesTecnicas = habilidadesTecnicas;
+        this.habilidadesBlandas = habilidadesBlandas;
+        this.certificaciones = certificaciones;
+        this.setEmbExperiencia = setEmbExperiencia;
+        this.setEmbEducacion = setEmbEducacion;
+        this.setEmbHabTec = setEmbHabTec;
+        this.setEmbHabBlandas = setEmbHabBlandas;
+        this.setEmbCertificaciones = setEmbCertificaciones;
         this.empresa = empresa;
     }
 
-    public Integer getIdPuesto() {
-        return idPuesto;
-    }
+    // Getters y Setters
+    public Integer getIdPuesto() { return idPuesto; }
+    public void setIdPuesto(Integer idPuesto) { this.idPuesto = idPuesto; }
 
-    public void setIdPuesto(Integer idPuesto) {
-        this.idPuesto = idPuesto;
-    }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getPais() { return pais; }
+    public void setPais(String pais) { this.pais = pais; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public String getDepartamento() { return departamento; }
+    public void setDepartamento(String departamento) { this.departamento = departamento; }
 
-    public String getPais() {
-        return Pais;
-    }
+    public String getDistrito() { return distrito; }
+    public void setDistrito(String distrito) { this.distrito = distrito; }
 
-    public void setPais(String pais) {
-        Pais = pais;
-    }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 
-    public String getDepartamento() {
-        return Departamento;
-    }
+    public String getJornada() { return jornada; }
+    public void setJornada(String jornada) { this.jornada = jornada; }
 
-    public void setDepartamento(String departamento) {
-        Departamento = departamento;
-    }
+    public String getModalidad() { return modalidad; }
+    public void setModalidad(String modalidad) { this.modalidad = modalidad; }
 
-    public String getDistrito() {
-        return Distrito;
-    }
+    public Double getSalario() { return salario; }
+    public void setSalario(Double salario) { this.salario = salario; }
 
-    public void setDistrito(String distrito) {
-        Distrito = distrito;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getCategoria() {
-        return Categoria;
-    }
+    public String getRequisitos() { return requisitos; }
+    public void setRequisitos(String requisitos) { this.requisitos = requisitos; }
 
-    public void setCategoria(String categoria) {
-        Categoria = categoria;
-    }
+    public String getExperiencia() { return experiencia; }
+    public void setExperiencia(String experiencia) { this.experiencia = experiencia; }
 
-    public String getJornada() {
-        return Jornada;
-    }
+    public String getEducacion() { return educacion; }
+    public void setEducacion(String educacion) { this.educacion = educacion; }
 
-    public void setJornada(String jornada) {
-        Jornada = jornada;
-    }
+    public String getHabilidadesTecnicas() { return habilidadesTecnicas; }
+    public void setHabilidadesTecnicas(String habilidadesTecnicas) { this.habilidadesTecnicas = habilidadesTecnicas; }
 
-    public String getModalidad() {
-        return Modalidad;
-    }
+    public String getHabilidadesBlandas() { return habilidadesBlandas; }
+    public void setHabilidadesBlandas(String habilidadesBlandas) { this.habilidadesBlandas = habilidadesBlandas; }
 
-    public void setModalidad(String modalidad) {
-        Modalidad = modalidad;
-    }
+    public String getCertificaciones() { return certificaciones; }
+    public void setCertificaciones(String certificaciones) { this.certificaciones = certificaciones; }
 
-    public Double getSalario() {
-        return Salario;
-    }
+    public String getSetEmbExperiencia() { return setEmbExperiencia; }
+    public void setSetEmbExperiencia(String setEmbExperiencia) { this.setEmbExperiencia = setEmbExperiencia; }
 
-    public void setSalario(Double salario) {
-        Salario = salario;
-    }
+    public String getSetEmbEducacion() { return setEmbEducacion; }
+    public void setSetEmbEducacion(String setEmbEducacion) { this.setEmbEducacion = setEmbEducacion; }
 
-    public Integer getVacante() {
-        return vacante;
-    }
+    public String getSetEmbHabTec() { return setEmbHabTec; }
+    public void setSetEmbHabTec(String setEmbHabTec) { this.setEmbHabTec = setEmbHabTec; }
 
-    public void setVacante(Integer vacante) {
-        this.vacante = vacante;
-    }
+    public String getSetEmbHabBlandas() { return setEmbHabBlandas; }
+    public void setSetEmbHabBlandas(String setEmbHabBlandas) { this.setEmbHabBlandas = setEmbHabBlandas; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getSetEmbCertificaciones() { return setEmbCertificaciones; }
+    public void setSetEmbCertificaciones(String setEmbCertificaciones) { this.setEmbCertificaciones = setEmbCertificaciones; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getRequisitos() {
-        return requisitos;
-    }
-
-    public void setRequisitos(String requisitos) {
-        this.requisitos = requisitos;
-    }
-
-    public String getEmbeddingVector() {
-        return embeddingVector;
-    }
-
-    public void setEmbeddingVector(String embeddingVector) {
-        this.embeddingVector = embeddingVector;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
+    public Empresa getEmpresa() { return empresa; }
+    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 }

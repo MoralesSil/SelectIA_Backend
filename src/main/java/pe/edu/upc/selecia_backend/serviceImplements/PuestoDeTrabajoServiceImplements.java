@@ -30,8 +30,8 @@ public class PuestoDeTrabajoServiceImplements implements PuestoDeTrabajoService 
     }
 
     @Override
-    public PuestoDeTrabajo findById_puesto(int id) {
-        return puestoDeTrabajoRepository.findByidPuesto(id);
+    public PuestoDeTrabajo findById(int id) {
+        return puestoDeTrabajoRepository.findById(id).orElse(null);
     }
 
 

@@ -11,6 +11,6 @@ public interface PuestoDeTrabajoService {
 
     void delete(int id);
 
-    PuestoDeTrabajo findById_puesto(int id);
+    PuestoDeTrabajo findById(int id);
 
 }

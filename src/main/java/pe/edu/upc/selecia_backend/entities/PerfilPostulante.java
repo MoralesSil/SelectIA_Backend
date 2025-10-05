@@ -22,11 +22,26 @@ public class PerfilPostulante implements Serializable {
     @Column(name = "textoextraido", columnDefinition = "text")
     private String textoExtraido;
 
-    @Column(name = "embeddingvector", columnDefinition = "text")
-    private String embeddingVector;
+    @Column(name = "setEmbEducacion", columnDefinition = "text")
+    private String setEmbEducacion;
 
-    @Column(name = "Habilidades", columnDefinition = "text")
-    private String Habilidades;
+    @Column(name = "setEmbExperiencia", columnDefinition = "text")
+    private String setEmbExperiencia;
+
+    @Column(name = "setEmbHabTec", columnDefinition = "text")
+    private String setEmbHabTec;
+
+    @Column(name = "setEmbHabBlandas", columnDefinition = "text")
+    private String setEmbHabBlandas;
+
+    @Column(name = "setcertificaciones", columnDefinition = "text")
+    private String setcertificaciones;
+
+    @Column(name = "habilidadesTecnicas", columnDefinition = "text")
+    private String habilidadesTecnicas;
+
+    @Column(name = "habilidadesBlandas", columnDefinition = "text")
+    private String habilidadesBlandas;
 
     @Column(name = "Experiencia", columnDefinition = "text")
     private String Experiencia;
@@ -34,28 +49,37 @@ public class PerfilPostulante implements Serializable {
     @Column(name = "Educación", columnDefinition = "text")
     private String Educacion;
 
+    @Column(name = "certificaciones", columnDefinition = "text")
+    private String certificaciones;
+
 
     public PerfilPostulante() {
 
     }
 
-    public PerfilPostulante(Integer idperfil, Usuario usuario, String cvUrl, String textoExtraido, String embeddingVector, String habilidades, String experiencia, String educacion) {
+    public PerfilPostulante(Integer idperfil, Usuario usuario, String cvUrl, String textoExtraido, String setEmbEducacion, String setEmbExperiencia, String setEmbHabTec, String setEmbHabBlandas, String setcertificaciones, String habilidadesTecnicas, String habilidadesBlandas, String experiencia, String educacion, String certificaciones) {
         this.idperfil = idperfil;
         this.usuario = usuario;
         this.cvUrl = cvUrl;
         this.textoExtraido = textoExtraido;
-        this.embeddingVector = embeddingVector;
-        this.Habilidades = habilidades;
-        this.Experiencia = experiencia;
-        this.Educacion = educacion;
+        this.setEmbEducacion = setEmbEducacion;
+        this.setEmbExperiencia = setEmbExperiencia;
+        this.setEmbHabTec = setEmbHabTec;
+        this.setEmbHabBlandas = setEmbHabBlandas;
+        this.setcertificaciones = setcertificaciones;
+        this.habilidadesTecnicas = habilidadesTecnicas;
+        this.habilidadesBlandas = habilidadesBlandas;
+        Experiencia = experiencia;
+        Educacion = educacion;
+        this.certificaciones = certificaciones;
     }
 
     public Integer getIdperfil() {
         return idperfil;
     }
 
-    public void setIdperfil(Integer id_perfil) {
-        this.idperfil = id_perfil;
+    public void setIdperfil(Integer idperfil) {
+        this.idperfil = idperfil;
     }
 
     public Usuario getUsuario() {
@@ -74,20 +98,68 @@ public class PerfilPostulante implements Serializable {
         this.cvUrl = cvUrl;
     }
 
-    public String getHabilidades() {
-        return Habilidades;
+    public String getTextoExtraido() {
+        return textoExtraido;
     }
 
-    public void setHabilidades(String habilidades) {
-        Habilidades = habilidades;
+    public void setTextoExtraido(String textoExtraido) {
+        this.textoExtraido = textoExtraido;
     }
 
-    public String getEducacion() {
-        return Educacion;
+    public String getSetEmbEducacion() {
+        return setEmbEducacion;
     }
 
-    public void setEducacion(String educación) {
-        Educacion = educación;
+    public void setSetEmbEducacion(String setEmbEducacion) {
+        this.setEmbEducacion = setEmbEducacion;
+    }
+
+    public String getSetEmbExperiencia() {
+        return setEmbExperiencia;
+    }
+
+    public void setSetEmbExperiencia(String setEmbExperiencia) {
+        this.setEmbExperiencia = setEmbExperiencia;
+    }
+
+    public String getSetEmbHabTec() {
+        return setEmbHabTec;
+    }
+
+    public void setSetEmbHabTec(String setEmbHabTec) {
+        this.setEmbHabTec = setEmbHabTec;
+    }
+
+    public String getSetEmbHabBlandas() {
+        return setEmbHabBlandas;
+    }
+
+    public void setSetEmbHabBlandas(String setEmbHabBlandas) {
+        this.setEmbHabBlandas = setEmbHabBlandas;
+    }
+
+    public String getSetcertificaciones() {
+        return setcertificaciones;
+    }
+
+    public void setSetcertificaciones(String setcertificaciones) {
+        this.setcertificaciones = setcertificaciones;
+    }
+
+    public String getHabilidadesTecnicas() {
+        return habilidadesTecnicas;
+    }
+
+    public void setHabilidadesTecnicas(String habilidadesTecnicas) {
+        this.habilidadesTecnicas = habilidadesTecnicas;
+    }
+
+    public String getHabilidadesBlandas() {
+        return habilidadesBlandas;
+    }
+
+    public void setHabilidadesBlandas(String habilidadesBlandas) {
+        this.habilidadesBlandas = habilidadesBlandas;
     }
 
     public String getExperiencia() {
@@ -98,20 +170,20 @@ public class PerfilPostulante implements Serializable {
         Experiencia = experiencia;
     }
 
-    public String getTextoExtraido() {
-        return textoExtraido;
+    public String getEducacion() {
+        return Educacion;
     }
 
-    public void setTextoExtraido(String textoExtraido) {
-        this.textoExtraido = textoExtraido;
+    public void setEducacion(String educacion) {
+        Educacion = educacion;
     }
 
-    public String getEmbeddingVector() {
-        return embeddingVector;
+    public String getCertificaciones() {
+        return certificaciones;
     }
 
-    public void setEmbeddingVector(String embeddingVector) {
-        this.embeddingVector = embeddingVector;
+    public void setCertificaciones(String certificaciones) {
+        this.certificaciones = certificaciones;
     }
 }
 
