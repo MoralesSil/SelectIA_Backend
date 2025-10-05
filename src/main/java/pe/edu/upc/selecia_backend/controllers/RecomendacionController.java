@@ -212,55 +212,38 @@ public class RecomendacionController {
             @RequestParam("usuarioId") Integer usuarioId,
             @RequestParam("cvUrl") String cvUrl) {
 
-        // 1. Valida usuario
-        Usuario usuario = usuarioService.findById(usuarioId);
-        if (usuario == null) {
-            return ResponseEntity.badRequest().body("Usuario no encontrado");
-        }
-
-        // 2. Llama a microservicio Python con solo la URL
-        String pythonUrl = "https://sbert-production.up.railway.app";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("cv_url", cvUrl);
-
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(body, headers);
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Map> response = restTemplate.postForEntity(pythonUrl, requestEntity, Map.class);
-        Map<String, Object> result = response.getBody();
-
-        // 3. Crea el perfil
-        PerfilPostulante perfil = new PerfilPostulante();
-        perfil.setUsuario(usuario);
-        perfil.setCvUrl(cvUrl);
-        perfil.setTextoExtraido((String) result.get("texto_extraido"));
-        perfil.setHabilidadesBlandas((String) result.get("habilidades")); // <-- Mantengo tu asignación original
-        perfil.setEducacion((String) result.get("educacion"));
-        perfil.setExperiencia((String) result.get("experiencia"));
-
-        // 4. Embeddings por campo (opción 2)
-        List<Double> embEducacion   = embeddingPythonService.getEmbedding(perfil.getEducacion() == null ? "" : perfil.getEducacion());
-        List<Double> embExperiencia = embeddingPythonService.getEmbedding(perfil.getExperiencia() == null ? "" : perfil.getExperiencia());
-        List<Double> embHabBlandas  = embeddingPythonService.getEmbedding(perfil.getHabilidadesBlandas() == null ? "" : perfil.getHabilidadesBlandas());
-
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            perfil.setSetEmbEducacion(mapper.writeValueAsString(embEducacion));
-            perfil.setSetEmbExperiencia(mapper.writeValueAsString(embExperiencia));
-            perfil.setSetEmbHabBlandas(mapper.writeValueAsString(embHabBlandas));
+            // 1️⃣ Buscar al usuario
+            Usuario usuario = usuarioService.findById(usuarioId);
+            if (usuario == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Usuario no encontrado con ID: " + usuarioId);
+            }
+
+            // 2️⃣ Buscar el perfil del postulante asociado
+            PerfilPostulante perfil = perfilPostulanteService.findByUsuario(usuario);
+
+            // 3️⃣ Si no existe, crear uno nuevo
+            if (perfil == null) {
+                perfil = new PerfilPostulante();
+                perfil.setUsuario(usuario);
+            }
+
+            // 4️⃣ Actualizar el campo CV
+            perfil.setCvUrl(cvUrl);
+
+            // 5️⃣ Guardar (ya sea nuevo o actualizado)
+            perfilPostulanteService.insert(perfil);
+
+            return ResponseEntity.ok("Perfil guardado/actualizado correctamente para el usuario con ID: " + usuarioId);
+
         } catch (Exception e) {
-            perfil.setSetEmbEducacion("[]");
-            perfil.setSetEmbExperiencia("[]");
-            perfil.setSetEmbHabBlandas("[]");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al registrar el perfil: " + e.getMessage());
         }
-
-        perfilPostulanteService.insert(perfil);
-
-        return ResponseEntity.ok("Perfil guardado correctamente");
     }
+
+
 
 
     @PutMapping("/perfilpostulante/update/{idUsuario}")
@@ -269,57 +252,35 @@ public class RecomendacionController {
             @PathVariable("idUsuario") Integer idUsuario,
             @RequestParam("cvUrl") String cvUrl) {
 
-        // 1. Busca el perfil existente
-        Usuario usuario = usuarioService.findById(idUsuario);
-        if (usuario == null) {
-            return ResponseEntity.badRequest().body("Usuario no encontrado");
-        }
-
-        PerfilPostulante perfil = perfilPostulanteService.findByUsuario(usuario);
-        if (perfil == null) {
-            return ResponseEntity.badRequest().body("Perfil no encontrado");
-        }
-
-        // 2. Llama al microservicio Python con la nueva URL (si cambió)
-        String pythonUrl = "https://sbert-production.up.railway.app";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("cv_url", cvUrl);
-
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(body, headers);
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Map> response = restTemplate.postForEntity(pythonUrl, requestEntity, Map.class);
-        Map<String, Object> result = response.getBody();
-
-        // 3. Actualiza los campos
-        perfil.setCvUrl(cvUrl);
-        perfil.setTextoExtraido((String) result.get("texto_extraido"));
-        perfil.setHabilidadesTecnicas((String) result.get("habilidades")); // <-- Mantengo tu asignación original
-        perfil.setEducacion((String) result.get("educacion"));
-        perfil.setExperiencia((String) result.get("experiencia"));
-
-        // 4. Embeddings por campo (opción 2)
-        List<Double> embEducacion   = embeddingPythonService.getEmbedding(perfil.getEducacion() == null ? "" : perfil.getEducacion());
-        List<Double> embExperiencia = embeddingPythonService.getEmbedding(perfil.getExperiencia() == null ? "" : perfil.getExperiencia());
-        List<Double> embHabTec      = embeddingPythonService.getEmbedding(perfil.getHabilidadesTecnicas() == null ? "" : perfil.getHabilidadesTecnicas());
-
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            perfil.setSetEmbEducacion(mapper.writeValueAsString(embEducacion));
-            perfil.setSetEmbExperiencia(mapper.writeValueAsString(embExperiencia));
-            perfil.setSetEmbHabTec(mapper.writeValueAsString(embHabTec));
+            // 1️⃣ Buscar al usuario
+            Usuario usuario = usuarioService.findById(idUsuario);
+            if (usuario == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Usuario no encontrado con ID: " + idUsuario);
+            }
+
+            // 2️⃣ Buscar el perfil existente
+            PerfilPostulante perfil = perfilPostulanteService.findByUsuario(usuario);
+            if (perfil == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Perfil no encontrado para el usuario con ID: " + idUsuario);
+            }
+
+            // 3️⃣ Actualizar solo el campo necesario
+            perfil.setCvUrl(cvUrl);
+
+            // 4️⃣ Guardar cambios
+            perfilPostulanteService.insert(perfil);
+
+            return ResponseEntity.ok("Perfil actualizado correctamente.");
+
         } catch (Exception e) {
-            perfil.setSetEmbEducacion("[]");
-            perfil.setSetEmbExperiencia("[]");
-            perfil.setSetEmbHabTec("[]");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al actualizar el perfil: " + e.getMessage());
         }
-
-        perfilPostulanteService.insert(perfil);
-
-        return ResponseEntity.ok(Collections.singletonMap("mensaje", "Perfil actualizado correctamente"));
     }
+
 
 
     @PutMapping("/perfilpostulante/update-campos")

@@ -26,6 +26,8 @@ E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\PerfilReclutado
 E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\PostulacionDTO.java
 E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\PuestoDeTrabajoDTO.java
 E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\RolDTO.java
+E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\SimilaridadExplainRequest.java
+E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\SimilaridadExplainResponse.java
 E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\UsuarioDTO.java
 E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\dtos\VerPostulacionDTO.java
 E:\SelecIA_Backend\src\main\java\pe\edu\upc\selecia_backend\entities\Educacion.java
