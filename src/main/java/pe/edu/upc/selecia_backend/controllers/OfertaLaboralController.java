@@ -53,6 +53,32 @@ public class OfertaLaboralController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> actualizar(
+            @PathVariable("id") int id,
+            @RequestBody OfertaLaboralDTO ofertaLaboralDTO) {
+
+        // Buscar la oferta existente
+        OfertaLaboral ofertaExistente = ofertaLaboralService.findById(id);
+        if (ofertaExistente == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Mapear los datos del DTO a la entidad existente
+        ModelMapper m = new ModelMapper();
+        m.map(ofertaLaboralDTO, ofertaExistente);
+
+        // Aseguramos que el ID no se pierda (por si en el DTO no viene)
+        ofertaExistente.setIdoferta(id);
+
+        // Guardar la oferta actualizada (reutilizamos insert como "save")
+        ofertaLaboralService.insert(ofertaExistente);
+
+        // Devolver OK sin contenido
+        return ResponseEntity.ok().build();
+    }
+
+
     @GetMapping("/estado/{estado}")
     public ResponseEntity<List<OfertaLaboralDTO>> buscarPorEstado(@PathVariable("estado") Boolean estado) {
         List<OfertaLaboral> lista = ofertaLaboralService.findByEstado(estado);
